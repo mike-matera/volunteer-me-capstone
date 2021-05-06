@@ -1,2 +1,3 @@
-# volunteer-me-capstone
-This is the capstone project for National University
+# Capstone Project for National University 
+
+Getting started. 
