@@ -21,7 +21,7 @@ export default class VolunteerApp extends React.Component {
     }
 
     reset_db() {
-        fetch('/api/reset')
+        fetch('http://localhost:3000/api/reset')
         .then(r => r.json())
         .then(data => {
             this.setState(data)
@@ -32,7 +32,7 @@ export default class VolunteerApp extends React.Component {
         var newstate = this.state 
         newstate.db[item.id] = item
         this.setState(newstate)
-        fetch('/api/update', {
+        fetch('http://localhost:3000/api/update', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export default class VolunteerApp extends React.Component {
         newstate.db[item.id] = item 
         newstate.db[item.parent].children.push(item.id)
         this.setState(newstate)
-        fetch('/api/insert', {
+        fetch('http://localhost:3000/api/insert', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ export default class VolunteerApp extends React.Component {
         parent.children.splice(got,1)
         delete newstate.db[item]
         this.setState(newstate)
-        fetch('/api/delete', {
+        fetch('http://localhost:3000/api/delete', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
