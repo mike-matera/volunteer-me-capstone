@@ -1,5 +1,9 @@
+#
+# This is for local debugging only. 
+#
+
 version: "3"
-    
+
 services:
   db:
     image: mysql:5.7
