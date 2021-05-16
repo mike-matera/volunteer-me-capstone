@@ -7,7 +7,7 @@ import SiteNav from 'components/sitenav'
 import EditCard from 'components/editcard'
 import ShiftList from 'components/shiftlist'
 
-import { query } from 'db/sqlite'
+import { query } from 'db/mysql'
 
 export default class VolunteerApp extends React.Component {
 

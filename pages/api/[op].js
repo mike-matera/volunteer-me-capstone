@@ -1,5 +1,5 @@
 
-import {create_db, del, insert, query, update} from 'db/sqlite'
+import {create_db, del, insert, query, update} from 'db/mysql'
 
 export default async function handler(req, res) {
 
