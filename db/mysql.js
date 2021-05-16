@@ -16,7 +16,6 @@ function check_db() {
             password: "root",
             multipleStatements: true
           });
-        //await util.promisify(_con.connect).call()
         _db = {
             query(sql, args) {
                 return util.promisify(_con.query)
