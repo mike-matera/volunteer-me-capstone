@@ -4,10 +4,11 @@
   "description": "This is our capstone project.",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "docker-compose up --abort-on-container-exit --exit-code-from volunteer",
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p $PORT",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dockerbuild": "docker build -t volunteer:latest ."
   },
   "keywords": [],
   "author": "",
