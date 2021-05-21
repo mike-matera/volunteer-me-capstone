@@ -7,7 +7,7 @@ import SiteNav from 'components/sitenav'
 import EditCard from 'components/editcard'
 import ShiftList from 'components/shiftlist'
 
-import { query } from 'db/mysql'
+import { query } from 'db/prisma_adapter'
 
 export default class VolunteerApp extends React.Component {
 
