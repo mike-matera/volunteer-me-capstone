@@ -18,7 +18,6 @@ export class ShiftRow extends React.Component {
         }    
     }
 
-
     doEdit() {
         this.setState({
             mode: 'edit',
@@ -51,7 +50,7 @@ export class ShiftRow extends React.Component {
             return (
                 <tr>                    
                 <td width="50%">
-                    <input type="text" id="name" value={this.props.shift.name} onChange={this.handleChange}/><br/>
+                    <input type="text" id="name" value={this.props.shift.title} onChange={this.handleChange}/><br/>
                     <textarea cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
                 </td>
                 <td>
@@ -59,7 +58,7 @@ export class ShiftRow extends React.Component {
                 </td>
                 <td>
                 <DatePicker id="starttime"
-                    selected={new Date(this.props.shift.starttime)}
+                    selected={new Date(this.props.shift.start)}
                     onChange={this.handleChange} //only when value has changed
                     showTimeSelect showTimeInput
                 />                    
@@ -74,14 +73,14 @@ export class ShiftRow extends React.Component {
             return (
                 <tr>
                 <td width="40%">
-                    <b>{this.props.shift.name}</b><br/>
+                    <b>{this.props.shift.title}</b><br/>
                     {this.props.shift.description}
                 </td>
                 <td>
                     {this.props.shift.location}
                 </td>
                 <td>
-                    {this.props.shift.starttime}
+                    {this.props.shift.start}
                 </td>
                 <td>
                     <Button variant="outline-success" onClick={() => {this.doEdit()}}>Edit</Button>
@@ -143,7 +142,6 @@ export default class ShiftList extends React.Component {
             <Button onClick={() => this.doAdd()} variant="outline-success">+</Button>
             </form>
         )
-    }
-    
+    }    
 }
 

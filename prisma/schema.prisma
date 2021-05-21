@@ -49,7 +49,8 @@ model Shift {
   id    String  @id @default(uuid())
   title String
   description String?
-  start DateTime
+  location String?
+  start String
   duration Int
   role String 
 

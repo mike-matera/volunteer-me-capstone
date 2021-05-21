@@ -27,14 +27,54 @@ export async function create_db() {
                                 {
                                     title: "Kitchen",
                                     description: "Work the Kitchen",
+                                    status: 'CONSTRUCTION',
+
+                                    shifts: {
+                                        create: [
+                                            {
+                                                title: "Cook", 
+                                                description: "Cook food",
+                                                location: "The kitchen",
+                                                start: '2021-05-21T14:48:00.000Z',
+                                                duration: 60,
+                                            },
+                                            {
+                                                title: "Serve", 
+                                                description: "Serve food",
+                                                location: "The kitchen",
+                                                start: '2021-05-21T14:48:00.000Z',
+                                                duration: 60,
+                                            },
+                                        ],
+                                    },
                                 },
                                 {
                                     title: "Gate",
                                     description: "Work the Gate",
+                                    status: 'CONSTRUCTION',
+
+                                    shifts: {
+                                        create: [
+                                            {
+                                                title: "Ticket Taker", 
+                                                description: "Take tickets",
+                                                location: "The gate",
+                                                start: '2021-05-21T14:48:00.000Z',
+                                                duration: 60,
+                                            },
+                                            {
+                                                title: "Greeter", 
+                                                description: "Greet guests",
+                                                location: "The gate",
+                                                start: '2021-05-21T14:48:00.000Z',
+                                                duration: 60,
+                                            },
+                                        ],
+                                    },
                                 },
                             ]
-                        }
-                    }
+                        },
+                    },
                 ],
             },
         },
@@ -55,16 +95,25 @@ export async function del(item) {
 }
 
 export async function query() {
-    const users = await prisma.user.findMany()
-    console.log(users)
+    const events = await prisma.event.findMany({
+        include: {
+            admins: true,
+            roles: {
+                include: {
+                    shifts: {
+                        include: {
+                            comments: true,
+                        }
+                    }
+                }
+            }, 
+        }        
+    })
+    console.log(events)
 
-    var dbdata = {}
-    var pagedata = []
     var status = "ok"
     return {
-        page: pagedata,
-        db: dbdata,
+        db: events,
         status: status,
     }
-
 }
