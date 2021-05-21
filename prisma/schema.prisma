@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  CONSTRUCTION
+  READY
+}
+
+model User {
+  id    String  @id @default(uuid())
+  email String  @unique
+  name  String?
+
+  events Event[]
+  roles Role[]
+  shifts Shift[]
+  comments Comment[]
+}
+
+model Event {
+  id    String  @id @default(uuid())
+  title String
+  description String?
+  status Status
+
+  admins User[]
+  roles Role[]
+}
+
+model Role {
+  id    String  @id @default(uuid())
+  title String
+  description String?
+  status Status
+  event String 
+
+  event_ Event @relation(fields: [event], references: [id])
+  coordinators User[]
+  shifts Shift[]
+}
+
+model Shift {
+  id    String  @id @default(uuid())
+  title String
+  description String?
+  start DateTime
+  duration Int
+  role String 
+
+  role_ Role @relation(fields: [role], references: [id])
+  volunteers User[]
+  comments Comment[]
+}
+
+model Comment {
+  id    String  @id @default(uuid())
+  comment String
+  shift String 
+  user String 
+
+  shift_ Shift @relation(fields: [shift], references: [id])
+  user_ User @relation(fields: [user], references: [id])
+}
