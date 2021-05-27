@@ -100,6 +100,7 @@ export async function query() {
             admins: true,
             roles: {
                 include: {
+                    coordinators: true,
                     shifts: {
                         include: {
                             comments: true,
