@@ -43,7 +43,7 @@ class EditCard extends React.Component {
             stuff = (
                 <>
                 <Card.Title>
-                    {item.name}
+                    {item.title}
                 </Card.Title>
                 <Card.Text>
                 {item.description}
@@ -56,7 +56,7 @@ class EditCard extends React.Component {
             stuff = (
                 <form onSubmit={this.handleSubmit}>
                 <Card.Title>
-                    <input type="text" id="name" value={item.name} onChange={this.handleChange}/>
+                    <input type="text" id="name" value={item.title} onChange={this.handleChange}/>
                 </Card.Title>
                 <Card.Text>
                     <textarea cols="80" rows="5" id="description" value={item.description} onChange={this.handleChange}/>
@@ -75,7 +75,6 @@ class EditCard extends React.Component {
             </Card>        
         )
     }
-
 }
 
 export default EditCard

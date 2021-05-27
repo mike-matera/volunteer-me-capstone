@@ -1,5 +1,5 @@
 
-import {create_db, del, insert, query, update} from 'db/sqlite'
+import {create_db, del, insert, query, update} from 'db/prisma_adapter'
 
 export default async function handler(req, res) {
 
