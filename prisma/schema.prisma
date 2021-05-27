@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native","debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -68,3 +69,5 @@ model Comment {
   shift_ Shift @relation(fields: [shift], references: [id])
   user_ User @relation(fields: [user], references: [id])
 }
+
+
