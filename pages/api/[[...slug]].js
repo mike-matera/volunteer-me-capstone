@@ -1,10 +1,7 @@
 import {
-    create_db,
-    del,
-    insert,
-    query,
-    update
-} from 'db/prisma_adapter'
+    get_event,
+    list_events
+} from 'db/access'
 
 /**
  * Top Level API handler. This function receives all calls made 
@@ -147,11 +144,6 @@ export default async function handler(req, res) {
     else if (entity == 'ping') {
         // FIXME: Not needed
         res.status(200).json({ping: 'pong'})
-    }
-    else if (entity == 'reset') {
-        // FIXME: Delete when ready
-        await create_db()
-        res.status(200).json(await query())
     }
     else {
         res.status(405).json({error: 'No such entity.'})
