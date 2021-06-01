@@ -21,7 +21,7 @@ services:
       - db
     image: node:16
     working_dir: /home/node/app
-    command: npx next dev 
+    entrypoint: ${ENTRYPOINT}
     volumes:
         - ./:/home/node/app
     ports:

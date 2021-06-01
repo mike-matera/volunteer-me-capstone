@@ -4,7 +4,8 @@
   "description": "This is our capstone project.",
   "main": "index.js",
   "scripts": {
-    "dev": "docker-compose up --abort-on-container-exit --exit-code-from volunteer",
+    "initdb": "ENTRYPOINT=./initdb.sh docker-compose up --abort-on-container-exit --exit-code-from volunteer",
+    "dev": "ENTRYPOINT=./dev.sh docker-compose up --abort-on-container-exit --exit-code-from volunteer",
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1",
