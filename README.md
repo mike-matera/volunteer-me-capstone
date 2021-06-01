@@ -67,3 +67,25 @@ $ npm run dev
 The developent server is accessible from the URL:
 
 > http://localhost:3000
+
+## Getting the Latest Upstream Changes 
+
+When a pull request is applied an the upstream repository is updated run this command from your source directory to pull in the latest changes:
+
+```
+$ git pull mike main 
+``` 
+
+> This will fail if you have uncommitted local changes! 
+
+There are two options if you have work that you would like to save:
+
+1. Commit your changes if they're ready. If not finish your changes and commit them. 
+1. Stash your changes and try to apply them onto the new code. 
+
+    ```
+    $ git stash 
+    $ git pull mike main 
+    $ git stash pop 
+    ```
+    
