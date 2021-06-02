@@ -1,10 +1,13 @@
-import Container from 'react-bootstrap/Container'
 import React from 'react';
+import Container from 'react-bootstrap/Container'
 import SiteNav from '../../components/sitenav'
 import EditCard from '../../components/editcard'
 import ShiftList from '../../components/shiftlist'
 
-import { get_event } from '../../db/access'
+import { 
+    get_event, 
+    event_can_view, 
+} from '../../db/access'
 
 import withSession from '../../lib/session'
 
@@ -72,8 +75,8 @@ export const getServerSideProps = withSession(async function({req, res, ...conte
     }
 
     // Check if the event exists, if not redirect to the event list.
-    const data = await get_event(context.query.id)
-    if (data == null) {
+    const event = await get_event(context.query.id)
+    if (event == null || !event_can_view(event, user)) {
         return {
             redirect: {
                 destination: '/event',
@@ -85,7 +88,7 @@ export const getServerSideProps = withSession(async function({req, res, ...conte
     // Render the event page. 
     return {
         props: {
-            event: data,
+            event: event,
             user: req.session.get('user'),
         }
     }

@@ -49,7 +49,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
     }
 
     // Get the list of events and render them.
-    const data = await list_events()
+    const data = await list_events(user)
     return { 
         props: {
             events: data,

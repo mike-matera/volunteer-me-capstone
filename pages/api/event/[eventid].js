@@ -1,6 +1,9 @@
 
 import withSession from '../../../lib/session'
-import { get_event } from '../../../db/access'
+import { 
+    get_event,
+    event_can_view,
+} from '../../../db/access'
 
 /**
  *  
@@ -20,16 +23,15 @@ import { get_event } from '../../../db/access'
     }
 
     const id = req.query.eventid 
-    console.log("request:", id, req.method)
+    console.log("EVENT request:", id, req.method)
 
     if (req.method === 'GET') {
-        // TODO: Check if the user is able to see this event.
-        const data = await get_event(id)
-        if (data == null) {
+        const event = await get_event(id)
+        if (event == null || !event_can_view(event, user) ) {
             res.status(404).json({error: 'No such event'})
         }
         else {
-            res.status(200).json(data)
+            res.status(200).json(event)
         }
     } 
     else if (req.method === 'POST') {
