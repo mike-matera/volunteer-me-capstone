@@ -4,7 +4,7 @@ import SiteNav from 'components/sitenav'
 import EditCard from 'components/editcard'
 import ShiftList from 'components/shiftlist'
 
-import { get_event } from 'db/access'
+import { get_event } from '../../db/access'
 
 export default class EventPage extends React.Component {
 
