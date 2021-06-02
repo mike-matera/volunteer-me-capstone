@@ -39,10 +39,3 @@ export async function get_event(eventid) {
     console.log(JSON.stringify(event, null, 2))
     return event
 }
-
-export function event_can_view(event, user) {
-    if (event.admins.some((admin) => admin.id === user.id)) {
-        return true
-    }
-    return event.status === 'READY'
-}
