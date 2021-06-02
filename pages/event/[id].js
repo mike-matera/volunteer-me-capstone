@@ -6,6 +6,8 @@ import ShiftList from '../../components/shiftlist'
 
 import { get_event } from '../../db/access'
 
+import withSession from '../../lib/session'
+
 export default class EventPage extends React.Component {
 
     constructor(props) {
@@ -27,14 +29,14 @@ export default class EventPage extends React.Component {
     render() {
         return (
             <>
-            <SiteNav/>
+            <SiteNav user={this.props.user}/>
             <Container fluid>
                 <EditCard 
-                    key={this.props.id}
-                    item={this.props}
+                    key={this.props.event.id}
+                    item={this.props.event}
                     app={this}
                     content={
-                        this.props.roles.map((role) => {
+                        this.props.event.roles.map((role) => {
                             return (
                                 <EditCard 
                                 key={role.id}
@@ -56,7 +58,20 @@ export default class EventPage extends React.Component {
     }
 }
 
-export async function getServerSideProps(context) {
+export const getServerSideProps = withSession(async function({req, res, ...context}) {  
+
+    // Check if the user is logged in. If not redirect to login page.
+    const user = req.session.get('user')
+    if (user == null) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+
+    // Check if the event exists, if not redirect to the event list.
     const data = await get_event(context.query.id)
     if (data == null) {
         return {
@@ -66,7 +81,12 @@ export async function getServerSideProps(context) {
             }
         }
     }
+
+    // Render the event page. 
     return {
-        props: data
+        props: {
+            event: data,
+            user: req.session.get('user'),
+        }
     }
-}
+})

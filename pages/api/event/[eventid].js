@@ -1,4 +1,5 @@
 
+import withSession from '../../../lib/session'
 import { get_event } from '../../../db/access'
 
 /**
@@ -9,10 +10,16 @@ import { get_event } from '../../../db/access'
  * @param {*} res - The response to send to the client.
  * 
  */
- export default async function handler(req, res) {
+ export default withSession(async (req, res) => {
+
+    // Only allow authenticated access to the API.
+    const user = req.session.get('user')
+    if (user == null) {
+        res.status(400).json({error: 'Not logged in'})
+        return
+    }
 
     const id = req.query.eventid 
-
     console.log("request:", id, req.method)
 
     if (req.method === 'GET') {
@@ -40,4 +47,4 @@ import { get_event } from '../../../db/access'
     else {
         res.status(404).json({ error: 'Not Implemented'})
     }
-}
+})

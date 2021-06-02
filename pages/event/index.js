@@ -4,6 +4,8 @@ import React from 'react';
 import SiteNav from '../../components/sitenav'
 import { list_events } from '../../db/access'
 
+import withSession from '../../lib/session'
+
 export default class AllEvents extends React.Component {
 
     constructor(props) {
@@ -13,7 +15,7 @@ export default class AllEvents extends React.Component {
     render() {
         return (
             <>
-            <SiteNav/>
+            <SiteNav user={this.props.user}/>
             <Container fluid>
             <h1>List of Events:</h1>
             <ul>
@@ -33,11 +35,25 @@ export default class AllEvents extends React.Component {
     }
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps = withSession(async function ({ req, res }) {  
+
+    // Check if the user is logged in. If not redirect to login page.
+    const user = req.session.get('user')
+    if (user == null) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+
+    // Get the list of events and render them.
     const data = await list_events()
     return { 
         props: {
             events: data,
+            user: req.session.get('user'),
         },
     }
-}
+})
