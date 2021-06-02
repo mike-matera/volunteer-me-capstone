@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import React from 'react';
-import SiteNav from 'components/sitenav'
 
+import SiteNav from '../../components/sitenav'
 import { list_events } from '../../db/access'
 
 export default class AllEvents extends React.Component {

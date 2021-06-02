@@ -1,8 +1,8 @@
 import Container from 'react-bootstrap/Container'
 import React from 'react';
-import SiteNav from 'components/sitenav'
-import EditCard from 'components/editcard'
-import ShiftList from 'components/shiftlist'
+import SiteNav from '../../components/sitenav'
+import EditCard from '../../components/editcard'
+import ShiftList from '../../components/shiftlist'
 
 import { get_event } from '../../db/access'
 
