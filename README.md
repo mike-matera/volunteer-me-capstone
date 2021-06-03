@@ -40,6 +40,13 @@ In order to use the full development mode you have to use Docker and WSL2 on Win
     $ git fetch mike
     ```
 
+1. Install the latest version of Node on your Ubuntu. 
+
+    ```
+    $ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    $ sudo apt-get install -y nodejs
+    ```    
+
 ## Setup Tasks 
 
 If you've completed the previous section you're ready to code. However, some tasks must be run every time you clone a new repository or you pull in new changes. 
