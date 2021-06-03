@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
-class EditCard extends React.Component {
+class EventCard extends React.Component {
 
     constructor(props) {
         super(props)
@@ -10,6 +10,7 @@ class EditCard extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             mode: 'view',
+            event: props.item,
         }
     }
 
@@ -20,24 +21,46 @@ class EditCard extends React.Component {
     }
 
     doUpdate() {
+        var newevent = {
+            id: this.state.event.id,
+            title: this.state.event.title,
+            description: this.state.event.description,
+        }
+        fetch('http://localhost:3000/api/event/' + this.state.event.id, {
+            method: 'PUT',
+            credentials: 'include',
+            body: JSON.stringify(newevent)
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('SUCCESS!')
+        })
+        .catch(error => {
+            // TODO: Reload this page on error.
+            console.log('ERROR!')
+        })
+
         this.setState({
-            mode: 'view',
+            mode: 'view',            
         })
     }
 
-    handleChange(event) {
-        const updated = this.props.item 
-        updated[event.target.id] = event.target.value
-        this.props.app.update(updated)
+    handleChange(ev) {
+        console.log(ev.target.id)
+        let newevent = this.state.event
+        newevent[ev.target.id] = ev.target.value
+        this.setState({
+            event: newevent,
+        })
     }
 
-    handleSubmit(event) {
+    handleSubmit(ev) {
         this.doUpdate()
-        event.preventDefault()
+        ev.preventDefault()
     }
 
     render() {
-        var item = this.props.item
+        var item = this.state.event
         var stuff;        
         if (this.state.mode == 'view') {
             stuff = (
@@ -56,7 +79,7 @@ class EditCard extends React.Component {
             stuff = (
                 <form onSubmit={this.handleSubmit}>
                 <Card.Title>
-                    <input type="text" id="name" value={item.title} onChange={this.handleChange}/>
+                    <input type="text" id="title" value={item.title} onChange={this.handleChange}/>
                 </Card.Title>
                 <Card.Text>
                     <textarea cols="80" rows="5" id="description" value={item.description} onChange={this.handleChange}/>
@@ -77,4 +100,4 @@ class EditCard extends React.Component {
     }
 }
 
-export default EditCard
+export default EventCard

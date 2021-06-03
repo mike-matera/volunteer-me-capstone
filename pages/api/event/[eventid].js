@@ -39,7 +39,16 @@ import {
         res.status(200).json({ error: 'TODO'})
     }    
     else if (req.method === 'PUT') {
-        // TODO: UPDATE
+        // TODO: VALIDATE PERMISSIONS
+        const prisma = require('../../../db/prisma')
+        const data = JSON.parse(req.body) 
+        const updateUser = await prisma.event.update({
+            where: {
+              id: id,
+            },
+            data: data
+        })
+        console.log(updateUser)
         res.status(200).json({ error: 'TODO'})
     }    
     else if (req.method === 'DELETE') {

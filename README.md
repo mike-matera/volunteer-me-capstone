@@ -44,7 +44,8 @@ In order to use the full development mode you have to use Docker and WSL2 on Win
 
     ```
     $ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-    $ sudo apt-get install -y nodejs
+    $ sudo apt install -y nodejs yarn
+    $ sudo npm install --global yarn
     ```    
 
 ## Setup Tasks 

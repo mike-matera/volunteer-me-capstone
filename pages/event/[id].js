@@ -1,7 +1,8 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
 import SiteNav from '../../components/sitenav'
-import EditCard from '../../components/editcard'
+import EventCard from '../../components/event'
+import RoleCard from '../../components/role'
 import ShiftList from '../../components/shiftlist'
 
 import { 
@@ -17,46 +18,31 @@ export default class EventPage extends React.Component {
         super(props)
     }
 
-    update(item) {
-        // FIXME: Implement this.
-    }
-
-    add(item) {
-        // FIXME: Implement this.
-    }
-
-    delete(item) {
-        // FIXME: Implement this.
-    }
-
     render() {
         return (
             <>
             <SiteNav user={this.props.user}/>
             <Container fluid>
-                <EditCard 
+                <EventCard 
                     key={this.props.event.id}
                     item={this.props.event}
-                    app={this}
                     content={
                         this.props.event.roles.map((role) => {
                             return (
-                                <EditCard 
+                                <RoleCard 
                                 key={role.id}
                                 item={role}
-                                app={this}
                                 content={
                                     <ShiftList 
                                         role={role} 
-                                        app={this}
                                         shifts={role.shifts}/>
                                 }/>
                             )
                         })
                     }
                 />
-           </Container>
-           </>
+            </Container>
+            </>
         )    
     }
 }
