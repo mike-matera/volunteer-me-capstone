@@ -9,7 +9,7 @@
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dockerbuild": "docker build -t volunteer:latest ."
+    "dockerbuild": "docker build -t localhost:32000/volunteer:latest ."
   },
   "keywords": [],
   "author": "",

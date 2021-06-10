@@ -10,7 +10,7 @@ export default function Page() {
     return (<h1>Nothing to see here.</h1>)
 }
 
-export function getStaticProps() {
+export function getServersideProps() {
     return {
         redirect: {
             destination: '/event',
