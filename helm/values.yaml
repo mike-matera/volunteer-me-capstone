@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: localhost:32000/volunteer
+  repository: docker.io/mike-matera/volunteer-me-capstone
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
