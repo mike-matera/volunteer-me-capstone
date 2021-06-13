@@ -2,83 +2,85 @@ import { Container } from "react-bootstrap"
 import withSession from '../lib/session'
 import SiteNav from '../components/sitenav'
 
+
 export default function Login(props) {
     return (
         <>
         <SiteNav></SiteNav>
-        <Container fluid>
-        <form method="post">
-            <label>
-                <span>Email:</span>
-                <input type="text" name="username" />
-            </label>
-            <label>
-                <span>Password:</span>
-                <input type="password" name="password" />
-            </label>
-            {props.error && <p className="error">{props.error}</p>}
-            <button type="submit">Login</button>
-            <style jsx>{`
-                form {
-                    padding-top: 5em;
-                    max-width: 500px;
-                    margin: auto;
-                }
-                form, label {
-                    display: flex;
-                    flex-flow: column;
-                }
-                label > span {
+        <section> 
+                <div className="main-jumbotron">
+                <h1>Let us help you find your next volunteer experience</h1>
+                <h4>
+                 At VolunteerMe!, we have the best volunteer events available in your area
+                </h4>
+                <div className="text-center mt-5">
+                    <a href="/loginForm" className="btn btn-primary btn-lg outline">Get started</a>
+                </div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                >
+                    <polygon fill="white" points="0,100 100,0 100,100" />
+                </svg>
+                </div>
+                <style jsx>
+                {`
+                    svg {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 10vw;
+                    }
+                    .main-jumbotron {
+                    position: relative;
+                    height: 90vh;
+                    min-height: 300px;
+                    background: #0690d8;
+                    background: linear-gradient( 
+                        90deg
+                         ,#50aef9 0%, rgb(52 100 138) 53%, rgb(6 75 130) 100% )
+                    }
+                    .main-jumbotron h1 {
+                    padding-top: 125px;
+                    text-align: center;
+                    color: white;
+                    font-weight: 700;
+                    }
+                    .main-jumbotron h4 {
+                    color: white;
+                    margin-top: 25px;
                     font-weight: 600;
-                }
-                input {
-                    padding: 8px;
-                    margin: 0.3rem 0 1rem;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                }
-                .error {
-                    color: brown;
-                    margin: 1rem 0 0;
-                }
-            `}</style>
-        </form>
-        </Container>
+                    text-align: center;
+                    }
+                    .btn.outline {
+                    background: none;
+                    padding: 12px 22px;
+                    }
+                    .btn-primary.outline {
+                    border: 2px solid #fff;
+                    color: #fff;
+                    }
+                    .btn-primary.outline:hover,
+                    .btn-primary.outline:focus,
+                    .btn-primary.outline:active,
+                    .btn-primary.outline.active,
+                    .open > .dropdown-toggle.btn-primary {
+                    color: rgba(252, 189, 201, 1);
+                    border-color: #fff;
+                    background-color: #fff;
+                    }
+                    .btn-primary.outline:active,
+                    .btn-primary.outline.active {
+                    border-color: #007299;
+                    color: #007299;
+                    box-shadow: none;
+                    }
+                `}
+                </style>
+                </section> 
         </>
-    )
+    );
 }
 
-export const getServerSideProps = withSession(async function({req, res}) {  
-    if (req.method == 'POST') {
-        try {
-            // TODO: Validate User!!! 
-            const prisma = require('../db/prisma')
-            const userdata = await prisma.user.findUnique({
-                where: {
-                    email: "test@test.test",
-                }
-            })
-            req.session.set('user', userdata)
-            await req.session.save()
-            return {
-                redirect: {
-                    destination: '/event',
-                    permanent: false,
-                }
-            }    
-        } catch (error) {
-            console.log(error)
-            return {
-                props: {
-                    error: "There was an error: " + String(error)
-                }
-            }
-        }
-    }
-    else {
-        return {
-            props: {},
-        }
-    }
-})
 

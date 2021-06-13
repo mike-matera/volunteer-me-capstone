@@ -2,9 +2,13 @@ import Container from 'react-bootstrap/Container'
 import React from 'react';
 
 import SiteNav from '../../components/sitenav'
+import Header from '../../components/header'
+import EmailListCard from '../../components/emailListCard'
+import Details from '../../components/details'
 import { list_events } from '../../db/access'
 
 import withSession from '../../lib/session'
+
 
 export default class AllEvents extends React.Component {
 
@@ -16,9 +20,10 @@ export default class AllEvents extends React.Component {
         return (
             <>
             <SiteNav user={this.props.user}/>
-            <Container fluid>
+            <Header/>
+            <Container fluid style={{textAlign:'center', padding: 40}}>
             <h1>List of Events:</h1>
-            <ul>
+            <ul style={{ justifyContent: 'center', display: 'flex'}}>
             {
                 this.props.events.map((event) => {
                     return (
@@ -30,10 +35,15 @@ export default class AllEvents extends React.Component {
             }
             </ul>
             </Container>
+            <Details/>
+            <EmailListCard />
             </>
         )    
     }
 }
+
+
+
 
 export const getServerSideProps = withSession(async function ({ req, res }) {  
 
