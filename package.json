@@ -1,0 +1,33 @@
+{
+  "name": "volunteer-me-capstone",
+  "version": "0.0.1",
+  "description": "This is our capstone project.",
+  "main": "index.js",
+  "scripts": {
+    "initdb": "ENTRYPOINT=./initdb.sh docker-compose up --abort-on-container-exit --exit-code-from volunteer",
+    "dev": "ENTRYPOINT=./dev.sh docker-compose up --abort-on-container-exit --exit-code-from volunteer",
+    "build": "rm -rf ./build && NODE_ENV=production next build",
+    "start": "next start -p $PORT",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dockerbuild": "docker build -t volunteer:latest ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "2.23.0",
+    "bootstrap": "^5.0.0",
+    "mysql": "^2.18.1",
+    "next": "^10.2.0",
+    "next-iron-session": "^4.1.13",
+    "prisma": "2.23.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.0",
+    "react-datepicker": "^3.8.0",
+    "react-dom": "^17.0.2",
+    "sqlite-async": "^1.1.1",
+    "sqlite3": "^5.0.2",
+    "swr": "^0.5.6",
+    "uuid": "^8.3.2"
+  }
+}
