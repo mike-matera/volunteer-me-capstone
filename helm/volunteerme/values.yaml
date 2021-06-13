@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/mike-matera/volunteer-me-capstone
+  repository: docker.io/mikematera/volunteer-me-capstone
+  #repository: localhost:32000/volunteer
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
@@ -37,33 +38,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 3000
-
-ingress:
-  enabled: true
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: volunteerme.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-          backend:
-            service:
-              name: volunteerme
-              port:
-                number: 3000 
-  tls: 
-    - hosts:
-        - volunteerme.local
-      secretName: selfsigned-cert
-
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -100,4 +76,4 @@ mysql:
     persistence:
       enabled: false
 
-ironSessionKey: "L7erLpz1i9vRALDc0j5o7vFBH09rZ4220YbjxhvMH8RoQgP9snPvpKkyhenHF7n2vyhj"
+ironSessionKey: 'L7erLpz1i9vRALDc0j5o7vFBH09rZ4220YbjxhvMH8RoQgP9snPvpKkyhenHF7n2vyhj'

@@ -1,0 +1,8 @@
+
+clusterName: volunteerme 
+serviceAccount:
+  create: false
+  name: aws-load-balancer-controller
+replicaCount: 1 
+region: us-west-1
+vpcId: vpc-0a7094fe53500c6ec

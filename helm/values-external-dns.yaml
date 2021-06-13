@@ -1,0 +1,10 @@
+
+provider: aws 
+policy: sync 
+
+serviceAccount:
+  name: external-dns
+  create: false
+
+aws:
+  region: us-west-1 
