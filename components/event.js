@@ -26,7 +26,8 @@ class EventCard extends React.Component {
             title: this.state.event.title,
             description: this.state.event.description,
         }
-        fetch('http://localhost:3000/api/event/' + this.state.event.id, {
+        const baseURL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
+        fetch(baseURL + '/api/event/' + this.state.event.id, {
             method: 'PUT',
             credentials: 'include',
             body: JSON.stringify(newevent)
