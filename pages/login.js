@@ -13,7 +13,6 @@ export default function Login(props) {
                 <h4>
                  At VolunteerMe!, we have the best volunteer events available in your area
                 </h4>
-                <h4>If CI/CD works this is here.</h4>
                 <div className="text-center mt-5">
                     <a href="/loginForm" className="btn btn-primary btn-lg outline">Get started</a>
                 </div>
