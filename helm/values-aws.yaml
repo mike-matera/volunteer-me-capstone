@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: docker.io/mikematera/volunteer-me-capstone
+  repository: 957903271915.dkr.ecr.us-west-1.amazonaws.com/volunteerme
   #repository: localhost:32000/volunteer
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
