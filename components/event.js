@@ -2,6 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
+import {
+    put_event
+} from '../lib/api'
+
 class EventCard extends React.Component {
 
     constructor(props) {
@@ -21,25 +25,14 @@ class EventCard extends React.Component {
     }
 
     doUpdate() {
-        var newevent = {
-            id: this.state.event.id,
-            title: this.state.event.title,
-            description: this.state.event.description,
-        }
-        const baseURL = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
-        fetch(baseURL + '/api/event/' + this.state.event.id, {
-            method: 'PUT',
-            credentials: 'include',
-            body: JSON.stringify(newevent)
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log('SUCCESS!')
-        })
-        .catch(error => {
-            // TODO: Reload this page on error.
-            console.log('ERROR!')
-        })
+        put_event(this.state.event)
+            .then(result => {
+                console.log('SUCCESS: ', result)
+            })
+            .catch(error => {
+                // TODO: Reload this page on error.
+                console.log('ERROR!')
+            })
 
         this.setState({
             mode: 'view',            

@@ -1,13 +1,11 @@
 
 import withSession from '../../../lib/session'
 import { 
-    get_event,
-    event_can_view,
 } from '../../../db/access'
 
 /**
  *  
- * A request to: /api/event/<eventid> will call this handler.
+ * A request to: /api/comment/<commentid> will call this handler.
  * 
  * @param {*} req - The HTTP request
  * @param {*} res - The response to send to the client.
@@ -22,18 +20,13 @@ import {
         return
     }
 
-    const id = req.query.eventid 
-    console.log("event request:", id, req.method)
+    const id = req.query.commentid 
+    console.log("comment request:", id, req.method)
     const prisma = require('../../../db/prisma')
 
     if (req.method === 'GET') {
-        const event = await get_event(id)
-        if (event == null || !event_can_view(event, user) ) {
-            res.status(404).json({error: 'No such event'})
-        }
-        else {
-            res.status(200).json(event)
-        }
+        // TODO: SELECT 
+        res.status(200).json({ error: 'TODO'})
     } 
     else if (req.method === 'POST') {
         // TODO: CREATE
@@ -42,13 +35,13 @@ import {
     else if (req.method === 'PUT') {
         // TODO: VALIDATE PERMISSIONS
         const data = JSON.parse(req.body) 
-        const update = await prisma.event.update({
+        const update = await prisma.comment.update({
             where: {
               id: id,
             },
             data: data
         })
-        res.status(200).json({ ok: update })
+        res.status(200).json({ user: update })
     }    
     else if (req.method === 'DELETE') {
         // TODO: DELETE
