@@ -2,8 +2,11 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
+import Router from 'next/router'
+
 import {
-    put_event
+    put_event,
+    delete_event
 } from '../lib/api'
 
 class EventCard extends React.Component {
@@ -12,10 +15,22 @@ class EventCard extends React.Component {
         super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.doDelete = this.doDelete.bind(this);
         this.state = {
             mode: 'view',
             event: props.item,
         }
+    }
+
+    doDelete() {
+        delete_event(this.state.event)
+            .then(result => {
+                Router.push('/event')
+            })
+            .catch(error => {
+                // TODO: Reload this page on error.
+                console.log('ERROR:', error)
+            })
     }
 
     doEdit() {
@@ -66,6 +81,7 @@ class EventCard extends React.Component {
                 {item.description}
                 </Card.Text>
                 <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
+                <Button onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
                 </>
             )
         }
