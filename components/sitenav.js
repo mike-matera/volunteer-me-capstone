@@ -21,7 +21,7 @@ export default function SiteNav(props) {
 
   return (
   <>
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" >
       <Navbar.Brand href="/" style={{padding: 10}}>
       <img
         alt=""
@@ -33,10 +33,14 @@ export default function SiteNav(props) {
       Volunteer Me!</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Roles</Nav.Link>
+        <Nav.Link href="#About">About</Nav.Link>
+        <Nav.Link href="#About">Meet the Team</Nav.Link>
+        {/* <Nav.Link href="#features">Features</Nav.Link>
+        <Nav.Link href="#pricing">Roles</Nav.Link> */}
       </Nav>
+      <div  class="collapse navbar-collapse justify-content-end"style={{display:"flex"}}>
       {usernav}
+      </div>
     </Navbar>
     {/* <br /> */}
   </>
