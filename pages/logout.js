@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap"
 import withSession from '../lib/session'
 import SiteNav from '../components/sitenav'
+import Team from '../components/team'
 
 export default function Logout(props) {
     return (
@@ -9,6 +10,7 @@ export default function Logout(props) {
         <Container fluid>
             Goodbye!
         </Container>
+        <Team/>
         </>
     )
 }
