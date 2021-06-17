@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps}) {
   return (
     <>
       <Helmet>
-        <title>VolunterMe!</title>
+        <title>VolunteerMe!</title>
       </Helmet>
       {/* Add the favicon */}
       <Head>

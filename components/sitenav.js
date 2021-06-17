@@ -1,5 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Team from './team'
+
 
 export default function SiteNav(props) {
   var usernav
@@ -33,12 +35,12 @@ export default function SiteNav(props) {
       Volunteer Me!</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="#About">About</Nav.Link>
-        <Nav.Link href="#About">Meet the Team</Nav.Link>
+        <Nav.Link href="#about">About</Nav.Link>
+        <Nav.Link href="#about">Meet the Team</Nav.Link>
         {/* <Nav.Link href="#features">Features</Nav.Link>
         <Nav.Link href="#pricing">Roles</Nav.Link> */}
       </Nav>
-      <div  class="collapse navbar-collapse justify-content-end"style={{display:"flex"}}>
+      <div  className="collapse navbar-collapse justify-content-end" style={{display:"flex"}}>
       {usernav}
       </div>
     </Navbar>
