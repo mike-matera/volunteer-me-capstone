@@ -1,5 +1,6 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import Team from './team'
 
 
 export default function SiteNav(props) {
@@ -34,8 +35,8 @@ export default function SiteNav(props) {
       Volunteer Me!</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="/">About</Nav.Link>
-        <Nav.Link href="/">Meet the Team</Nav.Link>
+        <Nav.Link href="#about">About</Nav.Link>
+        <Nav.Link href="#about">Meet the Team</Nav.Link>
         {/* <Nav.Link href="#features">Features</Nav.Link>
         <Nav.Link href="#pricing">Roles</Nav.Link> */}
       </Nav>

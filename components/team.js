@@ -4,7 +4,7 @@ class Team extends React.Component{
 
     render() {
         return (
-            <div style={{display:"flex"}}>
+            <div style={{display:"block"}}>
             <div className="person">
             <div className="person-badge">
                 <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
@@ -27,7 +27,7 @@ class Team extends React.Component{
             <h3>Darlene Graterol</h3>
             <strong>Learning is my hobbie</strong>
             <div>
-                ...
+               Software Developer professional with emphasis on Front-End work in JavaScript (ES6), Angular, ReactJS + Redux and React Native frameworks. Experienced in Node.js, Ruby, MySQL, Rails, DigitalOcean and Amazon Web Services.
             </div>
             </div>
 
@@ -40,7 +40,8 @@ class Team extends React.Component{
             <h3>Cliff Brown</h3>
             <strong>Best Voice in the business</strong>
             <div>
-               ... 
+              Active duty military member with over 20 years of experience. Specialize in Behavioral Malware Analysis, Software Development, Penetration Testing, Cyber Operation Analysis, Intrusion Detection/Network Analysis, System Accreditation, and Information Assurance.
+ 
             </div>
             </div>
 
@@ -52,7 +53,7 @@ class Team extends React.Component{
             <h3>Michael Matera</h3>
             <strong>I came, I saw, I programmed</strong>
             <div>
-                ...
+              Programming is my passion and I've taught classes in Python (CIS-15), C++ (CS-11M) and BASH (CIS-98). Information Security is more important than ever with a booming job market.
             </div>
             </div>
             <style jsx>{
