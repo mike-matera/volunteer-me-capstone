@@ -6,15 +6,20 @@ export default function SiteNav(props) {
   if (props.user) {
     usernav = (
       <>
-      <Nav className="mr-sm-2"><Nav.Link>Welcome {props.user.name}!</Nav.Link></Nav>
-      <Nav className="mr-sm-2"><Nav.Link href="/logout">Logout</Nav.Link></Nav>
+      <Nav.Link>Welcome {props.user.name}</Nav.Link>
+      
+      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/about">About</Nav.Link>
+      <Nav.Link href="/contactUs">Contact Us</Nav.Link>
+      <Nav.Link href="/logout">Logout</Nav.Link>
+            
       </>
     )
   }
   else {
     usernav = (
       <>
-      <Nav className="mr-sm-2"><Nav.Link href="/login">Login</Nav.Link></Nav>
+      <Nav.Link href="/login">Login</Nav.Link>
       </>
     )
   }
@@ -22,13 +27,14 @@ export default function SiteNav(props) {
   return (
   <>
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="/">Volunteer Here</Navbar.Brand>
+      <Navbar.Brand href="/">Volunteer Me!</Navbar.Brand>
+      <Navbar.Collapse >
+
       <Nav className="mr-auto">
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="#pricing">Pricing</Nav.Link>
+        {usernav}
       </Nav>
-      {usernav}
+      
+      </Navbar.Collapse>
     </Navbar>
     <br />
   </>
