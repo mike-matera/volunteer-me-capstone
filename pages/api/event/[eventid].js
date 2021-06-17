@@ -1,5 +1,6 @@
 
 import withSession from '../../../lib/session'
+import { v4 as uuidv4 } from 'uuid';
 import { 
     get_event,
     event_can_view,
@@ -23,7 +24,8 @@ import {
     }
 
     const id = req.query.eventid 
-    console.log("EVENT request:", id, req.method)
+    console.log("event request:", id, req.method)
+    const prisma = require('../../../db/prisma')
 
     if (req.method === 'GET') {
         const event = await get_event(id)
@@ -36,24 +38,37 @@ import {
     } 
     else if (req.method === 'POST') {
         // TODO: CREATE
-        res.status(200).json({ error: 'TODO'})
+        const newevent = {
+            id: uuidv4(),
+            title: "New event",
+            status: 'CONSTRUCTION',
+            admins: {
+                connect: [
+                    {id: user.id},
+                ]
+            }
+        }
+        res.status(200).json({ ok: await prisma.event.create({ data: newevent }) })
     }    
     else if (req.method === 'PUT') {
         // TODO: VALIDATE PERMISSIONS
-        const prisma = require('../../../db/prisma')
         const data = JSON.parse(req.body) 
-        const updateUser = await prisma.event.update({
+        const update = await prisma.event.update({
             where: {
               id: id,
             },
             data: data
         })
-        console.log(updateUser)
-        res.status(200).json({ error: 'TODO'})
+        res.status(200).json({ ok: update })
     }    
     else if (req.method === 'DELETE') {
-        // TODO: DELETE
-        res.status(200).json({ error: 'TODO'})
+        // TODO: VALIDATE PERMISSIONS
+        const result = await prisma.event.delete({
+            where: {
+                id: id,
+            }
+        })
+        res.status(200).json({ ok: result })
     }    
     else {
         res.status(404).json({ error: 'Not Implemented'})

@@ -2,16 +2,35 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 
+import Router from 'next/router'
+
+import {
+    put_event,
+    delete_event
+} from '../lib/api'
+
 class EventCard extends React.Component {
 
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.doDelete = this.doDelete.bind(this);
         this.state = {
             mode: 'view',
             event: props.item,
         }
+    }
+
+    doDelete() {
+        delete_event(this.state.event)
+            .then(result => {
+                Router.push('/event')
+            })
+            .catch(error => {
+                // TODO: Reload this page on error.
+                console.log('ERROR:', error)
+            })
     }
 
     doEdit() {
@@ -21,24 +40,14 @@ class EventCard extends React.Component {
     }
 
     doUpdate() {
-        var newevent = {
-            id: this.state.event.id,
-            title: this.state.event.title,
-            description: this.state.event.description,
-        }
-        fetch('http://localhost:3000/api/event/' + this.state.event.id, {
-            method: 'PUT',
-            credentials: 'include',
-            body: JSON.stringify(newevent)
-        })
-        .then(response => response.json())
-        .then(result => {
-            console.log('SUCCESS!')
-        })
-        .catch(error => {
-            // TODO: Reload this page on error.
-            console.log('ERROR!')
-        })
+        put_event(this.state.event)
+            .then(result => {
+                console.log('SUCCESS: ', result)
+            })
+            .catch(error => {
+                // TODO: Reload this page on error.
+                console.log('ERROR!')
+            })
 
         this.setState({
             mode: 'view',            
@@ -72,6 +81,7 @@ class EventCard extends React.Component {
                 {item.description}
                 </Card.Text>
                 <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
+                <Button onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
                 </>
             )
         }

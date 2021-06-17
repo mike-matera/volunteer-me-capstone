@@ -9,7 +9,7 @@
     "build": "rm -rf ./build && NODE_ENV=production next build",
     "start": "next start -p $PORT",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dockerbuild": "docker build -t volunteer:latest ."
+    "dockerbuild": "docker build -t localhost:32000/volunteer:latest ."
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
     "react-bootstrap": "^1.6.0",
     "react-datepicker": "^3.8.0",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
     "sqlite-async": "^1.1.1",
     "sqlite3": "^5.0.2",
     "swr": "^0.5.6",
