@@ -6,8 +6,7 @@
 
 set -e 
 
-while ! npx prisma migrate resolve; do 
+while ! npx prisma migrate deploy; do 
     sleep 10
 done 
-npx prisma migrate deploy
 yarn start
