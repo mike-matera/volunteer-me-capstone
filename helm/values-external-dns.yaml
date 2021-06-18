@@ -3,8 +3,8 @@ provider: aws
 policy: sync 
 
 serviceAccount:
-  name: external-dns
+  name: route53-updater
   create: false
 
 aws:
-  region: us-west-1 
+  region: us-west-2 
