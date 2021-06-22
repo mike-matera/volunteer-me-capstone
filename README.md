@@ -96,4 +96,110 @@ There are two options if you have work that you would like to save:
     $ git pull mike main 
     $ git stash pop 
     ```
-    
+
+## Deployment to AWS 
+
+This guide has the steps for deploying the application to AWS EKS. 
+
+### Before you Begin 
+
+You must have the follwoing tools isntalled:
+
+- The [aws CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- Amazon's [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [helm](https://helm.sh/docs/intro/install/)
+
+Verify that `aws` is connected to your account:
+
+```
+$ aws iam get-user
+{
+    "User": {
+        "Path": "/",
+        "UserName": "yourname",
+        "UserId": "XXXXXXXXXXXXXXXXXXXXX",
+        "Arn": "arn:aws:iam::XXXXXXXXXXXX:user/yourname",
+        "CreateDate": "2020-01-22T15:46:02Z",
+        "PasswordLastUsed": "2021-06-17T17:57:50Z"
+    }
+}
+```
+
+### Create a EKS Cluster 
+
+These instructions are adapted from the [creating and managing EKS clusters](https://eksctl.io/usage/creating-and-managing-clusters/) documentation.
+
+> NOTE: Set your default region and match the region in `helm/aws-cluster.yaml`
+
+```
+$ eksctl create cluster -f aws-cluster.yaml
+```
+
+This will take a while. It configures the `kubectl` command so once it's complete you should be able to run:
+
+```
+$ kubectl get all 
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.100.0.1   <none>        443/TCP   16m
+```
+
+### Install the AWS Load Balancer Controller 
+
+Follow the instructions on the [AWS Load Balancer Controller](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html) page. The controller monitors your Kubernetes deployments for `LoadBalancer` services and `Ingress` types. When it finds them it allocates an AWS Application Load Balancer (alb) for your application. The controller is installed using `helm`.
+
+I used custom values to reduce the replica count: 
+
+```
+helm install -n kube-system \
+    aws-load-balancer-controller eks/aws-load-balancer-controller \
+    -f values-aws-load-balancer-controller.yaml
+```
+
+Verify the controller is running using the command:
+
+```
+$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   2/2     2            0           46s
+```
+
+### (Optional) Connect the Load Balancer Controller to a Route 53 Hosted Zone 
+
+If you want Kubernetes to automatically update your DNS records with deployed apps use the [Bitnami External DNS chart](https://github.com/bitnami/charts/). In AWS you have to authorize your cluster to do this work: 
+
+I created this policy: 
+
+```
+$ aws iam create-policy --policy-name update-route53-managed-zones --policy-document file://route53-policy.json
+```
+
+And I created this service account: 
+
+```
+eksctl create iamserviceaccount \
+    --name route53-updater \
+    --namespace kube-system \
+    --cluster volunteerme \
+    --attach-policy-arn arn:aws:iam::XXXXXXXXXXXX:policy/update-route53-managed-zones \
+    --approve \
+    --override-existing-serviceaccounts
+```
+
+Then I installed the helm chart: 
+
+```
+$ helm repo add bitnami https://charts.bitnami.com/bitnami
+$ helm search repo bitnami
+$ helm install external-dns bitnami/external-dns --values values-external-dns.yaml -n kube-system
+```
+
+### Deploy the Application 
+
+Use the values and the secret override values to deploy. 
+
+```
+$ helm install volme volunteerme/ --values values-aws.yaml --values secrets/secrets-aws.yaml
+```
+
+

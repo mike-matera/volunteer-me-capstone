@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: volunteerme
+  region: us-west-2 # Oregon
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t3a.medium
+    desiredCapacity: 2
+    volumeSize: 16
+    ssh:
+      allow: true 
