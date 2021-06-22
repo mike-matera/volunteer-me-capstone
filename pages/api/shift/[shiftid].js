@@ -1,5 +1,6 @@
 
 import withSession from '../../../lib/session'
+import { v4 as uuidv4 } from 'uuid';
 import { 
 } from '../../../db/access'
 
@@ -25,12 +26,26 @@ import {
     const prisma = require('../../../db/prisma')
 
     if (req.method === 'GET') {
-        // TODO: SELECT 
+        // TODO: SELECT         
         res.status(200).json({ error: 'TODO'})
     } 
     else if (req.method === 'POST') {
         // TODO: CREATE
-        res.status(200).json({ error: 'TODO'})
+        const data = JSON.parse(req.body) 
+        const newshift = await prisma.shift.create({
+            data: {
+                id: uuidv4(),
+                title: "New Shift", 
+                description: "", 
+                location: "",
+                start: "",
+                duration: 60, 
+                role_: {
+                    connect: { id: data.role },
+                },
+            },
+        })
+        res.status(200).json({ role: newshift })
     }    
     else if (req.method === 'PUT') {
         // TODO: VALIDATE PERMISSIONS
@@ -44,8 +59,13 @@ import {
         res.status(200).json({ user: update })
     }    
     else if (req.method === 'DELETE') {
-        // TODO: DELETE
-        res.status(200).json({ error: 'TODO'})
+        // TODO: VALIDATE PERMISSIONS
+        const result = await prisma.shift.delete({
+            where: {
+                id: id,
+            }
+        })
+        res.status(200).json({ ok: result })
     }    
     else {
         res.status(404).json({ error: 'Not Implemented'})

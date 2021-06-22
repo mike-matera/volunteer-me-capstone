@@ -38,13 +38,11 @@ import {
                 title: "New Role", 
                 description: "", 
                 status: 'CONSTRUCTION',
-                event: {
-                    connect: {
-                        id: data.event,
-                    },
+                event_: {
+                    connect: { id: data.event },
                 },
             },
-        })      
+        })
         res.status(200).json({ role: newrole })
     }    
     else if (req.method === 'PUT') {
@@ -59,8 +57,13 @@ import {
         res.status(200).json({ user: update })
     }    
     else if (req.method === 'DELETE') {
-        // TODO: DELETE
-        res.status(200).json({ error: 'TODO'})
+        // TODO: VALIDATE PERMISSIONS
+        const result = await prisma.role.delete({
+            where: {
+                id: id,
+            }
+        })
+        res.status(200).json({ ok: result })
     }    
     else {
         res.status(404).json({ error: 'Not Implemented'})
