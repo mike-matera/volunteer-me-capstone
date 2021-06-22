@@ -88,3 +88,46 @@ export function event_can_view(event, user) {
         return false
     }
 }
+
+/**
+ * Check if the user can edit the event. 
+ * 
+ * MIXED
+ * 
+ * @param {*} event 
+ * @param {*} user 
+ * @returns 
+ */
+export function event_can_edit(event, user) {
+    return event.admins.any((admin) => admin.id == user.id)
+}
+
+/**
+ * Check if the user can access the role. 
+ * 
+ * MIXED 
+ * 
+ * @param {} role 
+ * @param {*} event 
+ * @param {*} user 
+ * @returns 
+ */
+export function role_can_edit(role, event, user) {
+    return role.coordinators.any((coordinator) => coordinator.id == user.id ) ||
+        event_can_edit(event, user)
+}
+
+/**
+ * Check if the user can view the role 
+ * 
+ * MIXED 
+ * 
+ * @param {*} role 
+ * @param {*} event 
+ * @param {*} user 
+ * @returns 
+ */
+export function role_can_view(role, event, user) {
+    return role.status == 'READY' || 
+        role_can_edit(role, event, user)
+}
