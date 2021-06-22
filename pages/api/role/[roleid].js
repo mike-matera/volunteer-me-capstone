@@ -38,9 +38,13 @@ import {
                 title: "New Role", 
                 description: "", 
                 status: 'CONSTRUCTION',
-                event: data.event,
+                event: {
+                    connect: {
+                        id: data.event,
+                    },
+                },
             },
-          })        
+        })      
         res.status(200).json({ role: newrole })
     }    
     else if (req.method === 'PUT') {
