@@ -37,7 +37,7 @@ import {
                 title: "New Role", 
                 description: "", 
                 status: 'CONSTRUCTION',
-                event: data.even_id,
+                event: data.event,
             },
           })        
         res.status(200).json({ role: newrole })
