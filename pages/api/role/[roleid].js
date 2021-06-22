@@ -30,7 +30,17 @@ import {
     } 
     else if (req.method === 'POST') {
         // TODO: CREATE
-        res.status(200).json({ error: 'TODO'})
+        const data = JSON.parse(req.body) 
+        const newrole = await prisma.role.create({
+            data: {
+                id: uuidv4(),
+                title: "New Role", 
+                description: "", 
+                status: 'CONSTRUCTION',
+                event: data.even_id,
+            },
+          })        
+        res.status(200).json({ role: newrole })
     }    
     else if (req.method === 'PUT') {
         // TODO: VALIDATE PERMISSIONS
