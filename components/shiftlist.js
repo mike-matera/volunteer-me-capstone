@@ -2,6 +2,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import DatePicker from 'react-datepicker'
+import { create_role } from '../lib/api'
+import Router from 'next/router'
+
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -48,8 +51,9 @@ export class ShiftRow extends React.Component {
     render() {
         if (this.state.mode == 'edit') {
             return (
+                <>
                 <tr>                    
-                <td width="50%">
+                <td width="40%">
                     <input type="text" id="name" value={this.props.shift.title} onChange={this.handleChange}/><br/>
                     <textarea cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
                 </td>
@@ -63,10 +67,11 @@ export class ShiftRow extends React.Component {
                     showTimeSelect showTimeInput
                 />                    
                 </td>
-                <td>
-                    <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
-                </td>
                 </tr>
+                <tr>
+                <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
+                </tr>
+                </>
             )            
         }
         else {
@@ -100,16 +105,8 @@ export default class ShiftList extends React.Component {
     }
 
     doAdd() {
-        const now = new Date()
-        this.props.app.add({
-            id: uuidv4(),
-            kind: 'shift',
-            name: "New Shift",
-            description: "Describe the shift.",
-            location: "Where does it happen.",
-            starttime: now.toLocaleDateString() + " " + now.toLocaleTimeString(),
-            parent: this.props.role,
-        })
+        create_role(this.props.event);
+        Router.reload(window.location.pathname);
     }
 
     handleSubmit(event) {
@@ -126,7 +123,6 @@ export default class ShiftList extends React.Component {
                     <th>What</th>
                     <th>Where</th>
                     <th>When</th>
-                <th></th>
                 </tr>
             </thead>
             <tbody>                                
