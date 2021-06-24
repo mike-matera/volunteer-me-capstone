@@ -33,7 +33,7 @@ In order to use the full development mode you have to use Docker and WSL2 on Win
 
 1. Clone your GitHub repository into your vscode instance. 
 
-1. Set Mike's repisitory as a remote so you can pull in changes to the `main` branch. These command should be run from within the project directory: 
+1. Set Mike's repository as a remote so you can pull in changes to the `main` branch. These command should be run from within the project directory: 
 
     ```
     $ git remote add mike https://github.com/mike-matera/volunteer-me-capstone.git
