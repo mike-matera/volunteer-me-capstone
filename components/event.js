@@ -69,11 +69,14 @@ class EventCard extends React.Component {
     }
 
     render() {
+        const eventcss ={
+            textAlign: 'center',
+        };
         var item = this.state.event
         var stuff;        
         if (this.state.mode == 'view') {
             stuff = (
-                <>
+                <div style = {eventcss}>
                 <Card.Title>
                     {item.title}
                 </Card.Title>
@@ -82,11 +85,12 @@ class EventCard extends React.Component {
                 </Card.Text>
                 <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
                 <Button onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
-                </>
+                </div>
             )
         }
         else {
             stuff = (
+                <div style = {eventcss}>
                 <form onSubmit={this.handleSubmit}>
                 <Card.Title>
                     <input type="text" id="title" value={item.title} onChange={this.handleChange}/>
@@ -96,6 +100,7 @@ class EventCard extends React.Component {
                 </Card.Text>
                 <input type="submit" value="Done" className="btn btn-success" variant="outline-success"/>
                 </form>
+                </div>
             )
         }
         return (
