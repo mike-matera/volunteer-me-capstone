@@ -77,6 +77,7 @@ class RoleCard extends React.Component {
         return (
             <Card style = {RoleStyle}>
             <Card.Body>
+                
                 {stuff}
                 <br></br>
                 {this.props.content}
