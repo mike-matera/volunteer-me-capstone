@@ -23,7 +23,7 @@ export default class EventPage extends React.Component {
             <>
             <SiteNav user={this.props.user}/>
             <Container fluid>
-                <EventCard 
+                <EventCard
                     key={this.props.event.id}
                     item={this.props.event}
                     content={
@@ -32,10 +32,12 @@ export default class EventPage extends React.Component {
                                 <RoleCard 
                                 key={role.id}
                                 item={role}
+                                event={this.props.event.id}
                                 content={
-                                    <ShiftList 
+                                    <ShiftList
                                         role={role} 
-                                        shifts={role.shifts}/>
+                                        shifts={role.shifts}
+                                        event={this.props.event.id}/>
                                 }/>
                             )
                         })

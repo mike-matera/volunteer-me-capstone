@@ -37,6 +37,7 @@ class RoleCard extends React.Component {
     }
 
     render() {
+        
         var item = this.props.item
         var stuff;        
         if (this.state.mode == 'view') {
@@ -48,7 +49,7 @@ class RoleCard extends React.Component {
                 <Card.Text>
                 {item.description}
                 </Card.Text>
-                <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
+                <Button className = 'Devon' onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
                 </>
             )
         }
@@ -65,9 +66,18 @@ class RoleCard extends React.Component {
                 </form>
             )
         }
+        const RoleStyle ={
+            width: '50%',
+            backgroundColor: 'lightgrey',
+            display: 'inline-block',
+            borderWidth: 'thick',
+            borderColor: 'black',
+        };
+
         return (
-            <Card className="roleCard">
+            <Card style = {RoleStyle}>
             <Card.Body>
+                
                 {stuff}
                 <br></br>
                 {this.props.content}
