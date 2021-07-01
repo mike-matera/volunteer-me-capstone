@@ -1,6 +1,5 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Team from './team'
 import React, {useState} from 'react'
 
 export default function SiteNav(props) {
@@ -8,10 +7,9 @@ export default function SiteNav(props) {
   var usernav
   if (props.user) {
     usernav = (
-      <>
-          
+      <>     
+      <Nav.Link style={{color: 'blueviolet'}} href="/profile">Profile</Nav.Link>
       <Nav.Link style={{color: 'blueviolet'}} href="/logout">Logout</Nav.Link>
-            
       </>
     )
   }
@@ -50,9 +48,6 @@ export default function SiteNav(props) {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/aboutus">About Us</Nav.Link> 
           <Nav.Link href="/contact">Contact</Nav.Link>
-        
-          {/* <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Roles</Nav.Link> */}
         </Nav>
         </div>
         <button>Open</button>
@@ -61,11 +56,7 @@ export default function SiteNav(props) {
       
 
       <div className="rightSide">
-
-      <div  className="logger">
         {usernav}      
-      </div>
-
       </div>
     
     </div>
