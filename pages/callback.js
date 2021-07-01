@@ -1,10 +1,12 @@
 import { useEffect, useContext } from 'react';
 import Router, { useRouter } from 'next/router';
-import { magic } from '../lib/magic';
+import createMagic from '../lib/magic';
 import Loading from '../components/loading';
+import withSession from '../lib/session'
 
-const Callback = () => {
+const Callback = (props) => {
   const router = useRouter();
+  const magic = createMagic(props.magic_key)
 
   // The redirect contains a `provider` query param if the user is logging in with a social provider
   useEffect(() => {
@@ -43,3 +45,11 @@ const Callback = () => {
 };
 
 export default Callback;
+
+export const getServerSideProps = withSession(async function({req, res, ...context}) {  
+  return {
+      props: {
+        magic_key: process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY,
+      }
+  }
+})

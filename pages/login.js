@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import Router from 'next/router';
-import { magic } from '../lib/magic';
+import createMagic from '../lib/magic';
 import EmailForm from '../components/email-form';
 import SocialLogins from '../components/social-logins';
 import withSession from '../lib/session'
 
-const Login = () => {
+const Login = (props) => {
   const [disabled, setDisabled] = useState(false);
-
   async function handleLoginWithEmail(email) {
+    const magic = createMagic(props.magic_key)
     try {
       setDisabled(true); // disable login button to prevent multiple emails from being triggered
 
@@ -80,6 +80,7 @@ export const getServerSideProps = withSession(async function({req, res, ...conte
 
   return {
       props: {
+        magic_key: process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY,
       }
   }
 })
