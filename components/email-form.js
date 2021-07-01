@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input, Icon, MonochromeIcons, CallToAction } from '@magiclabs/ui';
+import { Icon, MonochromeIcons, CallToAction } from '@magiclabs/ui';
 
 const EmailForm = ({ onEmailSubmit, disabled }) => {
   const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const EmailForm = ({ onEmailSubmit, disabled }) => {
       <form onSubmit={handleSubmit}>
         <h3 className='form-header'>Login</h3>
         <div className='input-wrapper'>
-          <Input
+          <input
             placeholder='Enter your email'
             size='sm'
             type='email'
