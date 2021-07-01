@@ -1,5 +1,6 @@
 import '../style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@magiclabs/ui/dist/cjs/index.css';
 import Head from "next/head";
 import { Helmet } from 'react-helmet';
 

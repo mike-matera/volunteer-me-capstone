@@ -1,10 +1,9 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container'
-import SiteNav from '../../components/sitenav'
 import EventCard from '../../components/event'
 import RoleCard from '../../components/role'
 import ShiftList from '../../components/shiftlist'
-
+import SiteNav from '../../components/sitenav'
 import { 
     get_event, 
     event_can_view, 
