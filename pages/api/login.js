@@ -7,9 +7,16 @@ const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 export default withSession(async (req, res) => {
 
   try {
-    const didToken = req.headers.authorization.substr(7);
-    await magic.token.validate(didToken);
-    const userid = magic.token.getPublicAddress(didToken);    
+    var userid, userMetadata
+    if (req.headers.authorization == 'DEVMODE' && process.env.NODE_ENV === 'development') {
+      userid = '0xdeadbeef'
+    }
+    else {
+      const didToken = req.headers.authorization.substr(7);
+      await magic.token.validate(didToken);
+      userid = magic.token.getPublicAddress(didToken);
+      userMetadata = await magic.users.getMetadataByToken(didToken)      
+    }
     console.log('USERID', userid)
     const prisma = require('../../db/prisma')
     let userdata = await prisma.user.findUnique({
@@ -19,7 +26,6 @@ export default withSession(async (req, res) => {
     })
     if (!userdata) {
       // New user 
-      const userMetadata = await magic.users.getMetadataByToken(didToken)      
       userdata = await prisma.user.create({
         data: {
           id: userid, 

@@ -4,6 +4,7 @@ import createMagic from '../lib/magic';
 import EmailForm from '../components/email-form';
 import SocialLogins from '../components/social-logins';
 import withSession from '../lib/session'
+import Alert from 'react-bootstrap/Alert'
 
 const Login = (props) => {
   const [disabled, setDisabled] = useState(false);
@@ -40,13 +41,41 @@ const Login = (props) => {
     await magic.oauth.loginWithRedirect({
       provider, // google, apple, etc
       redirectURI: new URL('/callback', window.location.origin).href, // required redirect to finish social login
-    });
+    });  
+  }
+
+  async function handleDevLogin() {
+    try {
+      // Do dummy login with the server (this only works if in dev mode)
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'DEVMODE',
+        },
+      });
+
+      if (res.status === 200) {
+        Router.push('/profile');
+      }
+    } catch (error) {
+      setDisabled(false); // re-enable login button - user may have requested to edit their email
+      console.log(error);
+    }
+  }
+
+  var dosocial = handleLoginWithSocial
+  var doemail = handleLoginWithEmail
+  if (process.env.NODE_ENV === 'development') {
+    dosocial = handleDevLogin
+    doemail = handleDevLogin
   }
 
   return (
     <div className='login'>
-      <EmailForm disabled={disabled} onEmailSubmit={handleLoginWithEmail} />
-      <SocialLogins onSubmit={handleLoginWithSocial} />
+      {process.env.NODE_ENV === 'development'? <Alert variant="warning">Development Mode</Alert> : ""}
+      <EmailForm disabled={disabled} onEmailSubmit={doemail} />
+      <SocialLogins onSubmit={dosocial} />
       <style jsx>{`
         .login {
           max-width: 20rem;
