@@ -52,8 +52,6 @@ export default function SiteNav(props) {
         </div>
         <button>Open</button>
       </div>
-      
-      
 
       <div className="rightSide">
         {usernav}      
