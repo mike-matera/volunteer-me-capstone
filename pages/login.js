@@ -109,7 +109,7 @@ export const getServerSideProps = withSession(async function({req, res, ...conte
 
   return {
       props: {
-        magic_key: process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY,
+        magic_key: JSON.parse(JSON.stringify(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)),
       }
   }
 })

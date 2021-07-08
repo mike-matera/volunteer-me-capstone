@@ -1,9 +1,13 @@
 import React from 'react';
+import withSession from '../lib/session'
+import SiteNav from '../components/sitenav'
 
 class Team extends React.Component{
 
     render() {
         return (
+            <>
+            <SiteNav user={this.props.user}/>
             <div style={{display:"block"}}>
             <div className="person">
             <div className="person-badge">
@@ -124,7 +128,28 @@ class Team extends React.Component{
                 
                 strong {color: #888;margin:-5px 0 5px 0;display:block;font-size:.8em;}`}</style>
          </div>
+         </>
         )
     }
 }
 export default Team
+export const getServerSideProps = withSession(async function({req, res, ...context}) {  
+
+    // Check if the user is logged in. If not redirect to login page.
+    const user = req.session.get('user')
+    if (user == null) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            }
+        }
+    }
+  
+    // Render the event page. 
+    return {
+        props: {
+            user: req.session.get('user'),
+        }
+    }
+  })
