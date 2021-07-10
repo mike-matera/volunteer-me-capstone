@@ -1,16 +1,14 @@
 import { Container } from "react-bootstrap"
 import withSession from '../lib/session'
 import SiteNav from '../components/sitenav'
-import Team from '../components/team'
+import EmailListCard from '../components/emailListCard'
 
-export default function Logout(props) {
+
+export default function Contact(props) {
     return (
         <>
-        <SiteNav user={props.user}/>
-        <Container fluid>
-            Goodbye!
-        </Container>
-        
+        <SiteNav user={props.user}/>                
+        <EmailListCard />
         </>
     )
 }

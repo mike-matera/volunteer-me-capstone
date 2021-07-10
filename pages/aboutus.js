@@ -3,14 +3,12 @@ import withSession from '../lib/session'
 import SiteNav from '../components/sitenav'
 import Team from '../components/team'
 
-export default function Logout(props) {
+export default function AboutUs(props) {
     return (
         <>
         <SiteNav user={props.user}/>
-        <Container fluid>
-            Goodbye!
-        </Container>
-        
+                
+        <Team/>
         </>
     )
 }

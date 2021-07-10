@@ -8,7 +8,6 @@ export default function SiteNav(props) {
   if (props.user) {
     usernav = (
       <>     
-      <Nav.Link style={{color: 'blueviolet'}} href="/profile">Profile</Nav.Link>
       <Nav.Link style={{color: 'blueviolet'}} href="/logout">Logout</Nav.Link>
       </>
     )
@@ -22,7 +21,7 @@ export default function SiteNav(props) {
   }
 
   /* will allow links to be converted to button whene screen is smaller */
-  const [showLinks, setShowLinks] = useState(true);
+  const [showLinks, setShowLinks] = useState(false);
 
   return (
   <>
@@ -50,13 +49,14 @@ export default function SiteNav(props) {
           <Nav.Link href="/contact">Contact</Nav.Link>
         </Nav>
         </div>
-        <button>Open</button>
-      </div>
-      
-      
+        <button onClick={() => setShowLinks(!showLinks)}>Open</button>
+      </div>   
 
       <div className="rightSide">
-        {usernav}      
+
+        <div  className="logger">
+          {usernav}      
+        </div>
       </div>
     
     </div>

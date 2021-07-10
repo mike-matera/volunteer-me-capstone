@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container'
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Header from '../../components/header'
-import EmailListCard from '../../components/emailListCard'
 import Details from '../../components/details'
 import { list_events } from '../../db/access'
 import withSession from '../../lib/session'
@@ -55,7 +54,7 @@ export default class AllEvents extends React.Component {
             <Button variant="primary" onClick={this.newEvent}>New Event</Button>
             </Container>
             <Details/>
-            <EmailListCard />
+
             </>
         )    
     }
