@@ -3,8 +3,12 @@ import Router from 'next/router';
 import createMagic from '../lib/magic';
 import EmailForm from '../components/email-form';
 import SocialLogins from '../components/social-logins';
+import LandingSide from '../components/landing-side-display';
 import withSession from '../lib/session'
 import Alert from 'react-bootstrap/Alert'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Login = (props) => {
   const [disabled, setDisabled] = useState(false);
@@ -72,23 +76,32 @@ const Login = (props) => {
   }
 
   return (
-    <div className='login'>
+    <Container fluid style={{overflow:"hidden"}}>
+    <Row>
+    <Col sm={7} style={{paddingLeft:0}}>
+    <LandingSide/>
+    </Col>
+    <Col sm={5}>
+      <div className="login">
       {process.env.NODE_ENV === 'development'? <Alert variant="warning">Development Mode</Alert> : ""}
       <EmailForm disabled={disabled} onEmailSubmit={doemail} />
       <SocialLogins onSubmit={dosocial} />
+      </div>
+    </Col>
       <style jsx>{`
         .login {
-          max-width: 20rem;
+          max-width: 40rem;
           margin: 40px auto 0;
           padding: 1rem;
-          border: 1px solid #dfe1e5;
+          // border: 1px solid #dfe1e5;
           border-radius: 4px;
           text-align: center;
-          box-shadow: 0px 0px 6px 6px #f7f7f7;
+          // box-shadow: 0px 0px 6px 6px #f7f7f7;
           box-sizing: border-box;
         }
       `}</style>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
@@ -107,9 +120,12 @@ export const getServerSideProps = withSession(async function({req, res, ...conte
       }
   }
 
-  return {
+  let key = process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY
+  key = (key)? key : ""
+    return {
       props: {
-        magic_key: JSON.parse(JSON.stringify(process.env.NEXT_PUBLIC_MAGIC_PUBLISHABLE_KEY)),
+        magic_key: key,
+
       }
   }
 })

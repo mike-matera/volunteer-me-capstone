@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import React from 'react';
 import Button from 'react-bootstrap/Button'
+import Header from '../../components/header'
 import EmailListCard from '../../components/emailListCard'
 import Details from '../../components/details'
 import { list_events } from '../../db/access'
@@ -36,6 +37,7 @@ export default class AllEvents extends React.Component {
         return (
             <>
             <SiteNav user={this.props.user}/>
+            <Header/>
             <Container fluid style={{textAlign:'center', padding: 40}}>
             <h1>List of Events:</h1>
             <ul style={{ justifyContent: 'center', display: 'block'}}>
