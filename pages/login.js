@@ -78,15 +78,15 @@ const Login = (props) => {
   return (
     <Container fluid style={{overflow:"hidden"}}>
     <Row>
-    <Col sm={7} style={{paddingLeft:0}}>
-    <LandingSide/>
-    </Col>
-    <Col sm={5}>
-      <div className="login">
+    <Col sm={5} style={{height:"100vh"}}>
+      <div className="login" >
       {process.env.NODE_ENV === 'development'? <Alert variant="warning">Development Mode</Alert> : ""}
       <EmailForm disabled={disabled} onEmailSubmit={doemail} />
       <SocialLogins onSubmit={dosocial} />
       </div>
+    </Col>
+    <Col sm={7} style={{paddingLeft:0, paddingRight:0}}>
+    <LandingSide/>
     </Col>
       <style jsx>{`
         .login {
