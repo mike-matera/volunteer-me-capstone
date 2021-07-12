@@ -1,67 +1,93 @@
 import React from 'react';
 import withSession from '../lib/session'
 import SiteNav from '../components/sitenav'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+    faGithub,
+    faLinkedin
+  } from '@fortawesome/free-brands-svg-icons';
 
-class Team extends React.Component{
+class Team extends React.Component {
 
     render() {
         return (
             <>
-            <SiteNav user={this.props.user}/>
-            <div style={{display:"block"}}>
-            <div className="person">
-            <div className="person-badge">
-                <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
-                <img className="peculiar" src="https://avatars.githubusercontent.com/u/65829383?v=4"/>
-            </div>
-            <h3>Devon Davis</h3>
-            <strong>Loving React</strong>
-            <i className="fa fa-github fa-lg"/>
-            <div>
-               ...
-            </div>
-            </div>
+                <SiteNav user={this.props.user} />
+                <Container>
+                    <Row>
+                        <Col sm={6}>
+                        <div className="person">
+                            <div className="person-badge">
+                                <img className="normal" src="https://cdn.vivo-university.com:8085/vivo/assets/global/img/avatar-placeholder.png" />
+                                <img className="peculiar" src="https://avatars.githubusercontent.com/u/67982945?v=4" />
+                            </div>
+                            <h3>Cliff Brown</h3>
+                            <a href="https://github.com/opt1mus777" style={{padding:2}} ><FontAwesomeIcon icon={faGithub}  size="lg"/></a>
+                            <a href="https://www.linkedin.com/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
+                            <strong style={{paddingTop:5}}>Best Voice in the business</strong>
+                            <div>
+                                Active duty military member with over 20 years of experience. Specialize in Behavioral Malware Analysis, Software Development, Penetration Testing, Cyber Operation Analysis, Intrusion Detection/Network Analysis, System Accreditation, and Information Assurance.
+                                
+                           </div>
+                        </div>
+                        </Col>
+                        <Col sm={6}>
+                        <div className="person">
+                                <div className="person-badge">
+                                    <img className="normal" src="https://cdn.vivo-university.com:8085/vivo/assets/global/img/avatar-placeholder.png" />
+                                    <img className="peculiar" src="https://avatars.githubusercontent.com/u/65829383?v=4" />
+                                </div>
+                                <h3>Devon Davis</h3>
+                                <a href="https://github.com/playererdd" style={{padding:2}} ><FontAwesomeIcon icon={faGithub}  size="lg"/></a>
+                                <a href="https://www.linkedin.com/in/devon-davis-60984b26/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
+                                <strong style={{paddingTop:5}}>Loving React</strong>
+                                <i className="fa fa-github fa-lg" />
+                                <div>
+                                    Current National University Student working on a Masters in Computer Science. Air Force Officer.
+                               </div>
+                            </div>
+                        </Col>
+                    </Row>
 
+                    <Row>
+                    <Col sm={6}>
+                    <div className="person">
+                                <div className="person-badge">
+                                    <img className="normal" src="https://media.istockphoto.com/photos/female-portrait-icon-as-avatar-or-profile-picture-picture-id477333976?k=6&m=477333976&s=612x612&w=0&h=A5lI_2KJbVjyQpNsaCDWAR3jj-CLV1kqI6ObClYf4e4=" />
+                                    <img className="peculiar" src="https://avatars.githubusercontent.com/u/42652617?v=4" />
+                                </div>
+                                <h3>Darlene Graterol</h3>
+                                <a href="https://github.com/dcgb93" style={{padding:2}} ><FontAwesomeIcon icon={faGithub}  size="lg"/></a>
+                                <a href="https://www.linkedin.com/in/darlene-graterol-0791b0156/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
+                                <strong style={{paddingTop:5}}>Learning is my hobbie</strong>
+                                <div>
+                                    Software Developer professional with emphasis on Front-End work in JavaScript (ES6), Angular, ReactJS + Redux and React Native frameworks. Experienced in Node.js, Ruby, MySQL, Rails, DigitalOcean and Amazon Web Services.
+                                </div>
+                            </div>
+                    </Col>
 
-            <div className="person">
-            <div className="person-badge">
-                <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMjx0LqJMFd7JVxQWunQ3akZmWy1Kxsa0BDQ&usqp=CAU"/>
-                <img className="peculiar" src="https://avatars.githubusercontent.com/u/42652617?v=4"/>
-            </div>
-            <h3>Darlene Graterol</h3>
-            <strong>Learning is my hobbie</strong>
-            <div>
-               Software Developer professional with emphasis on Front-End work in JavaScript (ES6), Angular, ReactJS + Redux and React Native frameworks. Experienced in Node.js, Ruby, MySQL, Rails, DigitalOcean and Amazon Web Services.
-            </div>
-            </div>
+                    <Col sm={6}>
+                        <div className="person">
+                            <div className="person-badge">
+                                <img className="normal" src="https://cdn.vivo-university.com:8085/vivo/assets/global/img/avatar-placeholder.png" />
+                                <img className="peculiar" src="https://avatars.githubusercontent.com/u/1709049?v=4" />
+                            </div>
+                            <h3>Michael Matera</h3>
+                            <a href="https://github.com/mike-matera" style={{padding:2}} ><FontAwesomeIcon icon={faGithub}  size="lg"/></a>
+                            <a href="https://www.linkedin.com/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
+                            <strong style={{paddingTop:5}}>I came, I saw, I programmed</strong>
+                            <div>
+                                Programming is my passion and I've taught classes in Python (CIS-15), C++ (CS-11M) and BASH (CIS-98). Information Security is more important than ever with a booming job market.
+                           </div>
+                        </div>
+                        </Col>
+                    </Row>
 
-
-            <div className="person">
-            <div className="person-badge">
-                <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
-                <img className="peculiar" src="https://avatars.githubusercontent.com/u/67982945?v=4"/>
-            </div>
-            <h3>Cliff Brown</h3>
-            <strong>Best Voice in the business</strong>
-            <div>
-              Active duty military member with over 20 years of experience. Specialize in Behavioral Malware Analysis, Software Development, Penetration Testing, Cyber Operation Analysis, Intrusion Detection/Network Analysis, System Accreditation, and Information Assurance.
- 
-            </div>
-            </div>
-
-            <div className="person">
-            <div className="person-badge">
-                <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
-                <img className="peculiar" src="https://avatars.githubusercontent.com/u/1709049?v=4"/>
-            </div>
-            <h3>Michael Matera</h3>
-            <strong>I came, I saw, I programmed</strong>
-            <div>
-              Programming is my passion and I've taught classes in Python (CIS-15), C++ (CS-11M) and BASH (CIS-98). Information Security is more important than ever with a booming job market.
-            </div>
-            </div>
-            <style jsx>{
-                `.person {
+                    <style jsx>{
+                        `.person {
                     width: 600px;
                     padding: 70px 0 0 230px;
                     min-height: 200px;
@@ -124,16 +150,17 @@ class Team extends React.Component{
                     margin: 0;
                     font-weight: 200;
                     font-size: 28px;
+                    padding-bottom:5px;
                 }
                 
                 strong {color: #888;margin:-5px 0 5px 0;display:block;font-size:.8em;}`}</style>
-         </div>
-         </>
+                </Container>
+            </>
         )
     }
 }
 export default Team
-export const getServerSideProps = withSession(async function({req, res, ...context}) {  
+export const getServerSideProps = withSession(async function ({ req, res, ...context }) {
 
     // Check if the user is logged in. If not redirect to login page.
     const user = req.session.get('user')
@@ -145,11 +172,11 @@ export const getServerSideProps = withSession(async function({req, res, ...conte
             }
         }
     }
-  
+
     // Render the event page. 
     return {
         props: {
             user: req.session.get('user'),
         }
     }
-  })
+})
