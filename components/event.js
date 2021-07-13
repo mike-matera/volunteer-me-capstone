@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-
 import Router from 'next/router'
 
 import {
     put_event,
-    delete_event
+    delete_event,
+    create_role
 } from '../lib/api'
 
 class EventCard extends React.Component {
@@ -21,6 +21,17 @@ class EventCard extends React.Component {
             event: props.item,
         }
     }
+    doAdd() {
+        create_role(this.props.item.id)
+            .then(result => {
+            Router.reload(window.location.pathname);
+        })
+            .catch(error => {
+            // TODO: Reload this page on error.
+            console.log('ERROR:', error)
+        })
+        
+    }
 
     doDelete() {
         delete_event(this.state.event)
@@ -34,6 +45,7 @@ class EventCard extends React.Component {
     }
 
     doEdit() {
+        
         this.setState({
             mode: 'edit',
         })
@@ -83,8 +95,10 @@ class EventCard extends React.Component {
                 <Card.Text>
                 {item.description}
                 </Card.Text>
+                <br/>
                 <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
                 <Button onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
+                <Button onClick={() => this.doAdd()} variant="outline-success">Add Role</Button>
                 </div>
             )
         }
