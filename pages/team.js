@@ -9,12 +9,15 @@ import {
     faGithub,
     faLinkedin
   } from '@fortawesome/free-brands-svg-icons';
-
+import { config, dom } from "@fortawesome/fontawesome-svg-core";
+import Head from "next/head";
+  
 class Team extends React.Component {
 
     render() {
         return (
             <>
+                <Head><style>{dom.css()}</style></Head>
                 <SiteNav user={this.props.user} />
                 <Container>
                     <Row>
