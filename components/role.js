@@ -1,6 +1,11 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import Router from 'next/router'
+
+import {
+    delete_role,
+} from '../lib/api'
 
 class RoleCard extends React.Component {
 
@@ -11,6 +16,17 @@ class RoleCard extends React.Component {
         this.state = {
             mode: 'view',
         }
+    }
+
+    doDelete() {
+        delete_role(this.props.item)
+            .then(result => {
+                Router.reload(window.location.pathname);
+            })
+            .catch(error => {
+                // TODO: Reload this page on error.
+                console.log('ERROR:', error);
+            })
     }
 
     doEdit() {
@@ -49,7 +65,9 @@ class RoleCard extends React.Component {
                 <Card.Text>
                 {item.description}
                 </Card.Text>
-                <Button className = 'Devon' onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
+                <Button  onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
+                <Button  onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
+                <hr></hr>
                 </>
             )
         }
@@ -67,7 +85,8 @@ class RoleCard extends React.Component {
             )
         }
         const RoleStyle ={
-            width: '50%',
+            'max-width': '800px',
+            'min-width': '500px',
             backgroundColor: 'lightgrey',
             display: 'inline-block',
             borderWidth: 'thick',
@@ -77,7 +96,6 @@ class RoleCard extends React.Component {
         return (
             <Card style = {RoleStyle}>
             <Card.Body>
-                
                 {stuff}
                 <br></br>
                 {this.props.content}

@@ -4,6 +4,7 @@ import EventCard from '../../components/event'
 import RoleCard from '../../components/role'
 import ShiftList from '../../components/shiftlist'
 import SiteNav from '../../components/sitenav'
+import CardGroup from 'react-bootstrap/CardGroup'
 import { 
     get_event, 
     event_can_view, 
@@ -25,8 +26,9 @@ export default class EventPage extends React.Component {
                 <EventCard
                     key={this.props.event.id}
                     item={this.props.event}
-                    content={
-                        this.props.event.roles.map((role) => {
+                    content={(
+                        <CardGroup>
+                        {this.props.event.roles.map((role) => {
                             return (
                                 <RoleCard 
                                 key={role.id}
@@ -38,9 +40,11 @@ export default class EventPage extends React.Component {
                                         shifts={role.shifts}
                                         event={this.props.event.id}/>
                                 }/>
+                                
                             )
-                        })
-                    }
+                        })}
+                        </CardGroup>
+                    )}
                 />
             </Container>
             </>
