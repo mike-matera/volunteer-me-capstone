@@ -36,8 +36,8 @@ export default class AllEvents extends React.Component {
         return (
             <>
             <SiteNav user={this.props.user}/>
-            <Header/>
             <Container fluid style={{textAlign:'center', padding: 40}}>
+            <Header/>
             <h1>List of Events:</h1>
             <ul style={{ justifyContent: 'center', display: 'block'}}>
             {
@@ -52,8 +52,8 @@ export default class AllEvents extends React.Component {
             }
             </ul>
             <Button variant="primary" onClick={this.newEvent}>New Event</Button>
-            </Container>
             <Details/>
+            </Container>
 
             </>
         )    

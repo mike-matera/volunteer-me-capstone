@@ -1,4 +1,11 @@
 
+/*
+Fix blownout layouts
+*/
+#__next > .container, #__next > .container-fluid {
+    overflow: hidden;
+}
+
 .shiftTable {
     margin-top: 1em;
 }
