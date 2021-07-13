@@ -3,7 +3,7 @@
  */
 
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { DEFAULT_THEME, getThemeVariables } from '@magiclabs/ui';
+/*import { DEFAULT_THEME, getThemeVariables } from '@magiclabs/ui';*/
 
 export default class MyDocument extends Document {
   render() {
@@ -11,10 +11,10 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="shortcut icon" href="https://static.thenounproject.com/png/3637517-200.png" />
-          <style
+          {/*<style
             type='text/css'
             dangerouslySetInnerHTML={{ __html: getThemeVariables(DEFAULT_THEME).toCSS() }}
-          />
+          />*/}
         </Head>
         <body>
           <Main />

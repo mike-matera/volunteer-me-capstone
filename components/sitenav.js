@@ -1,6 +1,7 @@
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import React, {useState} from 'react'
+import { useRouter } from 'next/router'
 
 export default function SiteNav(props) {
 
@@ -8,7 +9,6 @@ export default function SiteNav(props) {
   if (props.user) {
     usernav = (
       <>     
-      <Nav.Link style={{color: 'blueviolet'}} href="/profile">Profile</Nav.Link>
       <Nav.Link style={{color: 'blueviolet'}} href="/logout">Logout</Nav.Link>
       </>
     )
@@ -22,7 +22,10 @@ export default function SiteNav(props) {
   }
 
   /* will allow links to be converted to button whene screen is smaller */
+
   const [showLinks, setShowLinks] = useState(true);
+  const router = useRouter();
+
 
   return (
   <>
@@ -46,17 +49,20 @@ export default function SiteNav(props) {
         <div className="links" id={showLinks ? "hidden" : ""}>
         <Nav >
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/aboutus">About Us</Nav.Link> 
-          <Nav.Link href="/contact">Contact</Nav.Link>
+          <Nav.Link href="/team" >About Us</Nav.Link> 
+          <Nav.Link href="/contactUs">Contact</Nav.Link>
         </Nav>
         </div>
-        <button>Open</button>
-      </div>
-      
-      
+
+        <button onClick={() => setShowLinks(!showLinks)}>Open</button>
+      </div>   
+        
 
       <div className="rightSide">
-        {usernav}      
+
+        <div  className="logger">
+          {usernav}      
+        </div>
       </div>
     
     </div>

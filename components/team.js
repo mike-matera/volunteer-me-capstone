@@ -5,6 +5,20 @@ class Team extends React.Component{
     render() {
         return (
             <div style={{display:"block"}}>
+                        
+            <div className="person">
+            <div className="person-badge">
+                <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
+                <img className="peculiar" src="https://avatars.githubusercontent.com/u/67982945?v=4"/>
+            </div>
+            <h3>Cliff Brown</h3>
+            <strong>Best Voice in the business</strong>
+            <div>
+              Active duty military member with over 20 years of experience. Specialize in Behavioral Malware Analysis, Software Development, Penetration Testing, Cyber Operation Analysis, Intrusion Detection/Network Analysis, System Accreditation, and Information Assurance.
+ 
+            </div>
+            </div>
+
             <div className="person">
             <div className="person-badge">
                 <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
@@ -18,7 +32,6 @@ class Team extends React.Component{
             </div>
             </div>
 
-
             <div className="person">
             <div className="person-badge">
                 <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMjx0LqJMFd7JVxQWunQ3akZmWy1Kxsa0BDQ&usqp=CAU"/>
@@ -28,20 +41,6 @@ class Team extends React.Component{
             <strong>Learning is my hobbie</strong>
             <div>
                Software Developer professional with emphasis on Front-End work in JavaScript (ES6), Angular, ReactJS + Redux and React Native frameworks. Experienced in Node.js, Ruby, MySQL, Rails, DigitalOcean and Amazon Web Services.
-            </div>
-            </div>
-
-
-            <div className="person">
-            <div className="person-badge">
-                <img className="normal" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVyOPW2ik36WY6rM53YRGbOK21q1YaUAQ9Q&usqp=CAU"/>
-                <img className="peculiar" src="https://avatars.githubusercontent.com/u/67982945?v=4"/>
-            </div>
-            <h3>Cliff Brown</h3>
-            <strong>Best Voice in the business</strong>
-            <div>
-              Active duty military member with over 20 years of experience. Specialize in Behavioral Malware Analysis, Software Development, Penetration Testing, Cyber Operation Analysis, Intrusion Detection/Network Analysis, System Accreditation, and Information Assurance.
- 
             </div>
             </div>
 
