@@ -80,7 +80,7 @@ class Team extends React.Component {
                             <a href="https://www.linkedin.com/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
                             <strong style={{paddingTop:5}}>I came, I saw, I programmed</strong>
                             <div>
-                                Programming is my passion and I've taught classes in Python (CIS-15), C++ (CS-11M) and BASH (CIS-98). Information Security is more important than ever with a booming job market.
+                                I'm a nerd. I've made circuits, software, embedded systems, datacenters and blinky lights. I'm currently the department chair of the Computer Information Systems department at Cabrillo College. I used to work at Xilinx.
                            </div>
                         </div>
                         </Col>
