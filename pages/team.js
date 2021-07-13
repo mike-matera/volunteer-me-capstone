@@ -77,7 +77,7 @@ class Team extends React.Component {
                             </div>
                             <h3>Michael Matera</h3>
                             <a href="https://github.com/mike-matera" style={{padding:2}} ><FontAwesomeIcon icon={faGithub}  size="lg"/></a>
-                            <a href="https://www.linkedin.com/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
+                            <a href="https://www.linkedin.com/in/mike-matera-42b875/"><FontAwesomeIcon icon={faLinkedin}  size="lg"/></a>
                             <strong style={{paddingTop:5}}>I came, I saw, I programmed</strong>
                             <div>
                                 I'm a nerd. I've made circuits, software, embedded systems, datacenters and blinky lights. I'm currently the department chair of the Computer Information Systems department at Cabrillo College. I used to work at Xilinx.
