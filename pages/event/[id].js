@@ -38,7 +38,8 @@ export default class EventPage extends React.Component {
                                     <ShiftList
                                         role={role} 
                                         shifts={role.shifts}
-                                        event={this.props.event.id}/>
+                                        event={this.props.event.id}
+                                        item= {this.props.event}/>
                                 }/>
                                 
                             )

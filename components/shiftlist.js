@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table'
 import DatePicker from 'react-datepicker'
 import { create_role } from '../lib/api'
 import Router from 'next/router'
+
 import {
     create_shift,
     delete_shift
@@ -20,8 +21,10 @@ export class ShiftRow extends React.Component {
         super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
-        super.state = {
+        this.doDelete = this.doDelete.bind(this);
+        this.state = {
             mode: 'view',
+            event: props.shift,
         }    
     }
 
@@ -48,14 +51,12 @@ export class ShiftRow extends React.Component {
     }
 
     handleChange(event) {
-        const updated = this.props.shift 
-        if (event instanceof Date) {            
-            updated.starttime = event.toLocaleDateString() + " " + event.toLocaleTimeString()
-        }
-        else {
-            updated[event.target.id] = event.target.value    
-        }
-        this.props.app.update(updated)
+        console.log(event.target.id)
+        let newevent = this.state.event
+        newevent[event.target.id] = event.target.value
+        this.setState({
+            event: newevent,
+        })
     }
 
     handleSelect(event) {
@@ -72,6 +73,8 @@ export class ShiftRow extends React.Component {
              }
             
             console.log('outside', d)
+
+
             return (
                 <>
                 <tr>                    
@@ -100,7 +103,8 @@ export class ShiftRow extends React.Component {
             return (
                 <tr>
                 <td>
-                    <b>{this.props.shift.title}</b><br/>
+                    {this.props.shift.title}
+                    <br></br>
                     {this.props.shift.description}
                 </td>
                 <td>
@@ -138,6 +142,7 @@ export default class ShiftList extends React.Component {
     }
 
     handleSubmit(event) {
+        this.doUpdate()
         event.preventDefault()
     }
 
