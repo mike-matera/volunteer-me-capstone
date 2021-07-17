@@ -2,6 +2,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import React, {useState} from 'react'
 import { useRouter } from 'next/router'
+import ReorderIcon from '@material-ui/icons/Reorder'
 
 export default function SiteNav(props) {
 
@@ -22,7 +23,6 @@ export default function SiteNav(props) {
   }
 
   /* will allow links to be converted to button whene screen is smaller */
-
   const [showLinks, setShowLinks] = useState(true);
   const router = useRouter();
 
@@ -40,21 +40,24 @@ export default function SiteNav(props) {
           width="30"
           height="30"
           className="d-inline-block align-top"
-        />{' '}
+        />
         
         </Navbar.Brand>
 
         {/*if statement to set id to hidden when showLinks equals true 
         will set id to empty when showLinks is false*/}
         <div className="links" id={showLinks ? "hidden" : ""}>
+
         <Nav >
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/team" >About Us</Nav.Link> 
           <Nav.Link href="/contactUs">Contact</Nav.Link>
         </Nav>
+
         </div>
 
-        <button onClick={() => setShowLinks(!showLinks)}>Open</button>
+        {/* add hamburger */}
+        <button onClick={() => setShowLinks(!showLinks)}> <ReorderIcon /> </button>
       </div>   
         
 
