@@ -12,7 +12,7 @@ class Team extends React.Component{
                 <img className="peculiar" src="https://avatars.githubusercontent.com/u/67982945?v=4"/>
             </div>
             <h3>Cliff Brown</h3>
-            <strong>Best Voice in the business</strong>
+            <strong>Smooth seas do not make skillful Sailors</strong>
             <div>
               Active duty military member with over 20 years of experience. Specialize in Behavioral Malware Analysis, Software Development, Penetration Testing, Cyber Operation Analysis, Intrusion Detection/Network Analysis, System Accreditation, and Information Assurance.
  
