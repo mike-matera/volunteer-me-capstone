@@ -6,6 +6,7 @@ import CardGroup from 'react-bootstrap/CardGroup'
 
 import {
     delete_role,
+    put_role,
 } from '../lib/api'
 
 class RoleCard extends React.Component {
@@ -39,7 +40,15 @@ class RoleCard extends React.Component {
     }
 
     doUpdate() {
-        // TODO: Use the API to update the role.
+        // TODO: Use the API to update the role. 
+        put_role(this.props.item)
+            .then(result => {
+                console.log('SUCCESS: ', result)
+            })
+            .catch(error => {
+                // TODO: Reload this page on error.
+                console.log('ERROR!')
+            })
         this.setState({
             mode: 'view',
         })
@@ -47,7 +56,6 @@ class RoleCard extends React.Component {
 
     handleChange(event) {
         console.log(event.target.id)
-        console.log(event.target)
         let newevent = this.state.event
         newevent[event.target.id] = event.target.value
         this.setState({
@@ -66,14 +74,13 @@ class RoleCard extends React.Component {
         var stuff;
         
         const RoleStyle ={
-            'max-width': '800px',
-            'min-width': '500px',
-            'border-radius': '25px',
-            'margin': '10px',
+            maxWidth: '800px',
+            minWidth: '500px',
+            borderRadius: '30px',
+            margin: '10px',
             backgroundColor: 'lightgrey',
             display: 'inline-block',
-            borderWidth: 'thick',
-            borderColor: 'black',
+            border: '5px solid '
         }
         const Cardheader ={
             textAlign: 'center',
@@ -102,7 +109,7 @@ class RoleCard extends React.Component {
             stuff = (
                 <form onSubmit={this.handleSubmit}>    
                 <Card.Title style= {Cardheader}>
-                    <input type="text" id="name" value={item.title} onChange={this.handleChange}/>
+                    <input type="text" id="title" value={item.title} onChange={this.handleChange}/>
                 </Card.Title>
                 <Card.Text style= {Cardheader}>
                     <textarea cols="80" rows="5" id="description" value={item.description} onChange={this.handleChange}/>

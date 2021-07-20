@@ -21,6 +21,7 @@ export class ShiftRow extends React.Component {
         super(props)
         this.handleChange = this.handleChange.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
+        this.handleChangeDate = this.handleChangeDate.bind(this);
         this.doDelete = this.doDelete.bind(this);
         this.state = {
             mode: 'view',
@@ -58,6 +59,15 @@ export class ShiftRow extends React.Component {
             event: newevent,
         })
     }
+    handleChangeDate(event){
+        console.log('Date event',event)
+        let newevent = this.state.event
+        newevent['start'] = event.toISOString();
+        this.setState({
+            'event': newevent,
+        })
+        console.log('DATE STATE', this.state.event)
+    }
 
     handleSelect(event) {
         console.log("SELECT:", event)
@@ -79,22 +89,25 @@ export class ShiftRow extends React.Component {
                 <>
                 <tr>                    
                 <td>
-                    <input type="text" id="name" value={this.props.shift.title} onChange={this.handleChange}/><br/>
-                    <textarea cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
+                    <input type="text" id="title" value={this.props.shift.title} onChange={this.handleChange}/><br/>
+                    <input cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
                 </td>
                 <td>
                     <input type="text" id="location" value={this.props.shift.location} onChange={this.handleChange}/><br/>
                 </td>
                 <td>
-                <DatePicker id="starttime"
+                <DatePicker
                     selected={d}
-                    onChange={this.handleChange} //only when value has changed
+                    onChange={this.handleChangeDate} //only when value has changed
                     showTimeSelect showTimeInput
                 />                    
                 </td>
+                <td>
+                <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
+                </td>
                 </tr>
                 <tr>
-                <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
+                
                 </tr>
                 </>
             )            
