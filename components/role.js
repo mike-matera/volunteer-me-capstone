@@ -28,7 +28,7 @@ class RoleCard extends React.Component {
                 Router.reload(window.location.pathname);
             })
             .catch(error => {
-                // TODO: Reload this page on error.
+                Router.reload(window.location.pathname);
                 console.log('ERROR:', error);
             })
     }
@@ -46,7 +46,7 @@ class RoleCard extends React.Component {
                 console.log('SUCCESS: ', result)
             })
             .catch(error => {
-                // TODO: Reload this page on error.
+                
                 console.log('ERROR!')
             })
         this.setState({
@@ -101,12 +101,18 @@ class RoleCard extends React.Component {
                 {item.description}
                 </Card.Text>
                 <Button style= {Cardheader} onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
-                <Button style= {Cardheader} onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
+                <Button variant="outline-danger" style= {Cardheader} onClick={() => {
+                    if(this.state.event.shifts.length == 0){
+                    this.doDelete()}
+                    else{
+                    window.alert('Must delete all Shifts under a Role to delete')}
+                     }}>Delete</Button>
                 </>
             )
         }
         else {
             stuff = (
+                <>
                 <form onSubmit={this.handleSubmit}>    
                 <Card.Title style= {Cardheader}>
                     <input type="text" id="title" value={item.title} onChange={this.handleChange}/>
@@ -116,6 +122,7 @@ class RoleCard extends React.Component {
                 </Card.Text>
                 <input type="submit" value="Done" className="btn btn-success" variant="outline-success"/>
                 </form>
+                </>
             )
         }
         

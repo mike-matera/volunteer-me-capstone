@@ -46,7 +46,6 @@ export class ShiftRow extends React.Component {
                 Router.reload(window.location.pathname);
             })
             .catch(error => {
-                // TODO: Reload this page on error.
                 console.log('ERROR:', error);
             })
     }
@@ -84,13 +83,17 @@ export class ShiftRow extends React.Component {
             
             console.log('outside', d)
 
+            const textbox={
+                    height:'100px',
+            }
 
             return (
                 <>
+                
                 <tr>                    
                 <td>
                     <input type="text" id="title" value={this.props.shift.title} onChange={this.handleChange}/><br/>
-                    <input cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
+                    <input className='textbox' cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
                 </td>
                 <td>
                     <input type="text" id="location" value={this.props.shift.location} onChange={this.handleChange}/><br/>
@@ -149,7 +152,7 @@ export default class ShiftList extends React.Component {
             Router.reload(window.location.pathname);
         })
             .catch(error => {
-            // TODO: Reload this page on error.
+                Router.reload(window.location.pathname);
             console.log('ERROR:', error)
         })
     }

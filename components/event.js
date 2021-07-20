@@ -27,19 +27,27 @@ class EventCard extends React.Component {
             Router.reload(window.location.pathname);
         })
             .catch(error => {
-            // TODO: Reload this page on error.
+                Router.reload(window.location.pathname);
             console.log('ERROR:', error)
         })
         
     }
 
     doDelete() {
+        console.log('WHATS IN EVENT',this.state.event.roles.length);
+        if(this.state.event.roles.length == 0)
+            console.log('Shifts empty');
+        else{
+                console.log('Shifts full');
+            }
+            
+
         delete_event(this.state.event)
             .then(result => {
                 Router.push('/event')
             })
             .catch(error => {
-                // TODO: Reload this page on error.
+                Router.reload(window.location.pathname);
                 console.log('ERROR:', error)
             })
     }
@@ -57,7 +65,7 @@ class EventCard extends React.Component {
                 console.log('SUCCESS: ', result)
             })
             .catch(error => {
-                // TODO: Reload this page on error.
+                Router.reload(window.location.pathname);
                 console.log('ERROR!')
             })
 
@@ -97,7 +105,12 @@ class EventCard extends React.Component {
                 </Card.Text>
                 <br/>
                 <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
-                <Button onClick={() => this.doDelete()} variant="outline-danger">Delete</Button>
+                <Button variant="outline-danger" onClick={() => {
+                    if(this.state.event.roles.length == 0){
+                    this.doDelete()}
+                    else{
+                    window.alert('Must delete all Roles under an Event to delete')}
+                     }}>Delete</Button>
                 <Button onClick={() => this.doAdd()} variant="outline-success">Add Role</Button>
                 </div>
             )
