@@ -75,12 +75,12 @@ class RoleCard extends React.Component {
         
         const RoleStyle ={
             maxWidth: '800px',
-            minWidth: '500px',
+            minWidth: '600px',
             borderRadius: '30px',
             margin: '10px',
             backgroundColor: 'lightgrey',
             display: 'inline-block',
-            border: '5px solid '
+            border: '5px solid ',
         }
         const Cardheader ={
             textAlign: 'center',

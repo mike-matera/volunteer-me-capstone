@@ -7,7 +7,8 @@ import Router from 'next/router'
 
 import {
     create_shift,
-    delete_shift
+    delete_shift,
+    put_shift,
 } from '../lib/api'
 
 
@@ -36,6 +37,15 @@ export class ShiftRow extends React.Component {
     }
 
     doUpdate() {
+        put_shift(this.props.shift)
+            .then(result => {
+                console.log('SUCCESS: ', result)
+                Router.reload(window.location.pathname);
+            })
+            .catch(error => {
+                console.log('ERROR!')
+                Router.reload(window.location.pathname);
+            })
         this.setState({
             mode: 'view',
         })
@@ -51,7 +61,7 @@ export class ShiftRow extends React.Component {
     }
 
     handleChange(event) {
-        console.log(event.target.id)
+        console.log('Change event', event.target.value)
         let newevent = this.state.event
         newevent[event.target.id] = event.target.value
         this.setState({
@@ -86,11 +96,13 @@ export class ShiftRow extends React.Component {
             const textbox={
                     height:'100px',
             }
+            const styleediting={
+                    backgroundColor: 'blue',
+            }
 
             return (
                 <>
-                
-                <tr>                    
+                <tr style={{backgroundColor:'red'}}>                    
                 <td>
                     <input type="text" id="title" value={this.props.shift.title} onChange={this.handleChange}/><br/>
                     <input className='textbox' cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
@@ -105,12 +117,9 @@ export class ShiftRow extends React.Component {
                     showTimeSelect showTimeInput
                 />                    
                 </td>
-                <td>
-                <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
-                </td>
                 </tr>
-                <tr>
-                
+                <tr style={{marginTop:'50px'}}>
+                <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
                 </tr>
                 </>
             )            
@@ -178,7 +187,7 @@ export default class ShiftList extends React.Component {
             {
                 shifts.map((shift) => {
                     return (
-                        <ShiftRow key={shift.id} app={this.props.app} shift={shift}/>
+                        <ShiftRow key={shift.id} shift={shift}/>
                     )
                 })            
             }
