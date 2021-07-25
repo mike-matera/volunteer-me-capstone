@@ -20,6 +20,8 @@ class Team extends React.Component {
                 <Head><style>{dom.css()}</style></Head>
                 <SiteNav user={this.props.user} />
                 <Container>
+                    <h2 id="titleName" style={{textAlign:'center'}}>Meet the Team</h2>
+                    <hr className="divider"></hr>
                     <Row>
                         <Col sm={6}>
                         <div className="person">
@@ -97,6 +99,24 @@ class Team extends React.Component {
                     margin: auto;
                     position: relative;
                 }
+                #titleName{
+                    text-align: center;
+                    padding-top: 23px;
+                    text-transform: uppercase;
+                    margin: 0 0 20px 0;
+                    font-weight: 700;
+                    font-size: 33px;
+                    color: #333;
+                }
+                .divider{
+                    background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+                    height: 4px;
+                    bottom: 0;
+                    left: 50%;
+                }
+                .briefDescription{
+                    text-align: center;
+                }
                 .person-badge {
                     width: 200px;
                     height: 280px;
@@ -156,7 +176,9 @@ class Team extends React.Component {
                     padding-bottom:5px;
                 }
                 
-                strong {color: #888;margin:-5px 0 5px 0;display:block;font-size:.8em;}`}</style>
+                strong {color: #888;margin:-5px 0 5px 0;display:block;font-size:.8em;}
+                
+              `}</style>
                 </Container>
             </>
         )

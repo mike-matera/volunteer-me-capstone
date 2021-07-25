@@ -50,7 +50,8 @@ export default function SiteNav(props) {
 
         <Nav >
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/team" >About Us</Nav.Link> 
+          <Nav.Link href="/about">About</Nav.Link>
+          <Nav.Link href="/team" >Team</Nav.Link> 
           <Nav.Link href="/contactUs">Contact</Nav.Link>
         </Nav>
 

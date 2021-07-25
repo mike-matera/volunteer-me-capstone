@@ -89,7 +89,7 @@ class CardInput extends React.Component {
           <div className='container-fluid'>
             <div className='row'>
               <div className='col-xs-6'>
-                <img src='https://www.moneycrashers.com/wp-content/uploads/2013/03/volunteer-help-search-team-work-support-1068x713.jpg' style={{width:'85%'}} />
+                <img src='https://www.moneycrashers.com/wp-content/uploads/2013/03/volunteer-help-search-team-work-support-1068x713.jpg' style={{width:'100%'}} />
               </div>
   
               <div className='col-xs-6 side-front-content'>
@@ -311,10 +311,6 @@ class CardInput extends React.Component {
                     border-bottom: 1px solid #eee;
                     border-left: 0;
                     
-                    // &:focus {
-                    //   outline: 0;
-                    //   border-bottom: 1px solid #0c81f6;
-                    // }
                   }
                   
                   textarea {

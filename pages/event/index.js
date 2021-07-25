@@ -3,10 +3,13 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Header from '../../components/header'
 import Details from '../../components/details'
+import SectionA from '../../components/sectionA'
 import { list_events } from '../../db/access'
 import withSession from '../../lib/session'
 import Router from 'next/router'
 import SiteNav from '../../components/sitenav'
+import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row'
 import {
     create_event
 } from '../../lib/api'
@@ -36,10 +39,14 @@ export default class AllEvents extends React.Component {
         return (
             <>
             <SiteNav user={this.props.user}/>
-            <Container fluid style={{textAlign:'center', padding: 40}}>
+            <Container fluid style={{textAlign:'center', padding: '0px'}}>
             <Header/>
-            <h1>List of Events:</h1>
-            <ul style={{ justifyContent: 'center', display: 'block'}}>
+            {/* <SectionA/> */}
+            {/* <SectionB/> */}
+            {/* <SectionC title={"Developer Bot for Slack"} subtitle={"One article to one random person in your Slack group. Once a day."}/> */}
+            <div>
+            <h1>Get Involved</h1>
+            {/* <ul style={{ justifyContent: 'center', display: 'block'}}>
             {
                 this.props.events.map((event) => {
                     return (
@@ -50,9 +57,34 @@ export default class AllEvents extends React.Component {
                     )
                 })
             }
-            </ul>
+            </ul> */}
+          <Row style={{paddingLeft:"10%"}}>
+              { this.props.events.map((event) => {
+                    return ( [
+                            'Light',
+                            ].map((variant, idx) => (
+            <Card
+                bg={variant.toLowerCase()}
+                key={idx}
+                text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
+                style={{ width: '18rem', justifyContent: 'center', display: 'block', margin:"20px"}}
+                className="mb-2">
+                <Card.Header>Event Name</Card.Header>
+                <Card.Body>
+                <Card.Title><a href={"event/" + event.id}>{event.title}</a></Card.Title>
+                <Card.Text>
+                   <Button variant="primary" onClick={"event/" + event.id}>Learn More</Button>
+                </Card.Text>
+                </Card.Body>
+            </Card>
+
+                            ))
+                    )})}
+            </Row>   
             <Button variant="primary" onClick={this.newEvent}>New Event</Button>
-            <Details/>
+            <Details style={{paddingTop:"10px"}}/>
+            </div>
+             {/* <Footer/> */}
             </Container>
 
             </>

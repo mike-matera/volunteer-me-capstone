@@ -46,7 +46,7 @@ button:hover {
 .NavbarMain .leftSide .links {
     max-height: 80px;
     color: white;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .NavbarMain .leftSide button {
@@ -62,7 +62,7 @@ button:hover {
 .NavbarMain .rightSide .logger {
     max-height: 80px;
     color: white;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 /* !@media will reduce size of font as screen size shrinks */
@@ -109,4 +109,5 @@ button:hover {
         align-items: center;
     }
 }
+
 
