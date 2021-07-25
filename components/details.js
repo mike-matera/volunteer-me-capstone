@@ -4,7 +4,7 @@ class Details extends React.Component{
 
     render() {
         return (
-            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", paddingBottom: 40}} >
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", paddingBottom: 40, marginTop: "21px;"}} >
               <figure >
                 <img id="figureImg" src="https://pimtax.com/images/virginia-beach-tax-prep-giving.jpg" alt="sample41"/>
                 <figcaption>
