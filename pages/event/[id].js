@@ -23,6 +23,8 @@ export default class EventPage extends React.Component {
             <>
             <SiteNav user={this.props.user}/>
             <Container fluid>
+                <div id="eventHeader">Event Details</div>
+                <hr id="eventDivider"></hr>
                 <EventCard
                     key={this.props.event.id}
                     item={this.props.event}
@@ -46,6 +48,26 @@ export default class EventPage extends React.Component {
                         </CardGroup>
                     )}
                 />
+                <style jsx>{` 
+                #eventHeader{
+                    padding-top: 23px;
+                    text-transform: uppercase;
+                    margin: 0 0 20px 0;
+                    font-weight: 700;
+                    font-size: 25px;
+                    color: #333;
+                    text-align:center;
+                }
+
+                #eventDivider{
+                    background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
+                    height: 4px;
+                    bottom: 0;
+                    margin: auto;
+                    width: 415px;
+                }
+                
+                `}</style>
             </Container>
             </>
         )    

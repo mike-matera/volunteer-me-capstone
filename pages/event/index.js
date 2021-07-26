@@ -52,15 +52,13 @@ export default class AllEvents extends React.Component {
                         <Card.Body style={{ padding: "2.5rem 1rem" }}>
                             <Card.Title>Post an event</Card.Title>
                             <Card.Text>
-                                Provide volunteer opportunities and Engage your community.
+                                Provide volunteer opportunities and engage your community.
                 </Card.Text>
                             <div type="button" id="btn-custom" onClick={this.newEvent}> Create New Event</div>
                         </Card.Body>
                         <Card.Footer className="text-muted"><a href="#identifier"><FontAwesomeIcon icon={faArrowDown} size="lg" /></a></Card.Footer>
                     </Card>
-
-                    {/* <SectionA/> */}
-                    {/* <ul style={{ justifyContent: 'center', display: 'block'}}>
+                    {/*
             {
                 this.props.events.map((event) => {
                     return (

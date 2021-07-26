@@ -97,21 +97,21 @@ class EventCard extends React.Component {
         if (this.state.mode == 'view') {
             stuff = (
                 <div style = {eventcss}>
-                <Card.Title>
+                <Card.Title style={{fontSize:"1.6rem"}}>
                     {item.title}
                 </Card.Title>
                 <Card.Text>
                 {item.description}
                 </Card.Text>
-                <br/>
-                <Button onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
-                <Button variant="outline-danger" onClick={() => {
+                <Button onClick={() => this.doEdit()} id="editButton" variant="outline-success">Edit</Button>
+                <Button id="deleteButton" variant="outline-danger" onClick={() => {
                     if(this.state.event.roles.length == 0){
                     this.doDelete()}
                     else{
                     window.alert('Must delete all Roles under an Event to delete')}
                      }}>Delete</Button>
-                <Button onClick={() => this.doAdd()} variant="outline-success">Add Role</Button>
+                <br/>
+                <Button style={{color: "#fff",backgroundColor: "#21ba45",borderColor:"#21ba45",marginTop: "10px"}} onClick={() => this.doAdd()}>Add Role</Button>
                 </div>
             )
         }
@@ -123,16 +123,16 @@ class EventCard extends React.Component {
                     <input type="text" id="title" value={item.title} onChange={this.handleChange}/>
                 </Card.Title>
                 <Card.Text>
-                    <textarea cols="80" rows="5" id="description" value={item.description} onChange={this.handleChange}/>
+                    <textarea cols="80" rows="5" id="description" placeholder="Enter event description here..." value={item.description} onChange={this.handleChange}/>
                 </Card.Text>
-                <input type="submit" value="Done" className="btn btn-success" variant="outline-success"/>
+                <input type="submit" value="Done" style={{ backgroundColor: "#21ba45",borderColor: "#21ba45"}} className="btn btn-success" variant="outline-success"/>
                 </form>
                 </div>
             )
         }
         return (
             <Card className="roleCard">
-            <Card.Body>
+            <Card.Body style={{boxShadow:"0 10px 35px rgb(50 50 93 / 10%), 0 2px 15px rgb(0 0 0 / 7%)", paddingBottom: "75px"}}>
                 {stuff}
                 <br></br>
                 {this.props.content}
