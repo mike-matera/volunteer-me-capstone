@@ -110,4 +110,22 @@ button:hover {
     }
 }
 
+#editButton{
+    border-right: none;
+    margin-left: 0;
+    border-top-left-radius: .28571429rem;
+    border-bottom-left-radius: .28571429rem;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 80px;
+}
+
+#deleteButton{
+    margin-left: -1px;
+    width: 80px;
+    border-top-right-radius: .28571429rem;
+    border-bottom-right-radius: .28571429rem;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
 

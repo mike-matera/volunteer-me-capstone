@@ -27,6 +27,7 @@
     "@prisma/client": "2.23.0",
     "bootstrap": "^5.0.0",
     "magic-sdk": "^4.3.0",
+    "moment": "^2.29.1",
     "mysql": "^2.18.1",
     "next": "^10.2.0",
     "next-iron-session": "^4.1.13",

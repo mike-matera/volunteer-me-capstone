@@ -76,11 +76,12 @@ class RoleCard extends React.Component {
         const RoleStyle ={
             maxWidth: '800px',
             minWidth: '600px',
-            borderRadius: '30px',
+            borderRadius: '5px',
             margin: '10px',
-            backgroundColor: 'lightgrey',
+            boxShadow: "rgb(50 50 93 / 10%) 0px 10px 35px, rgb(0 0 0 / 7%) 0px 2px 15px",
+            // backgroundColor: 'lightgrey',
             display: 'inline-block',
-            border: '5px solid ',
+            // border: '5px solid ',
         }
         const Cardheader ={
             textAlign: 'center',
@@ -100,8 +101,8 @@ class RoleCard extends React.Component {
                 <Card.Text style= {Cardheader}>
                 {item.description}
                 </Card.Text>
-                <Button style= {Cardheader} onClick={() => this.doEdit()} variant="outline-success">Edit</Button>
-                <Button variant="outline-danger" style= {Cardheader} onClick={() => {
+                <Button style= {Cardheader} onClick={() => this.doEdit()} variant="outline-success" id="editButton">Edit</Button>
+                <Button id="deleteButton" variant="outline-danger" style= {Cardheader} onClick={() => {
                     if(this.state.event.shifts.length == 0){
                     this.doDelete()}
                     else{
@@ -118,9 +119,9 @@ class RoleCard extends React.Component {
                     <input type="text" id="title" value={item.title} onChange={this.handleChange}/>
                 </Card.Title>
                 <Card.Text style= {Cardheader}>
-                    <textarea cols="80" rows="5" id="description" value={item.description} onChange={this.handleChange}/>
+                    <textarea cols="80" rows="5" id="description" placeholder="Enter role description here..." value={item.description} onChange={this.handleChange}/>
                 </Card.Text>
-                <input type="submit" value="Done" className="btn btn-success" variant="outline-success"/>
+                <input type="submit" value="Done" style={{ backgroundColor: "#21ba45",borderColor: "#21ba45"}} className="btn btn-success" variant="outline-success"/>
                 </form>
                 </>
             )

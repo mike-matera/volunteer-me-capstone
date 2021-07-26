@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import DatePicker from 'react-datepicker'
+import moment from 'moment'
 import { create_role } from '../lib/api'
 import Router from 'next/router'
 
@@ -102,24 +103,26 @@ export class ShiftRow extends React.Component {
 
             return (
                 <>
-                <tr style={{backgroundColor:'red'}}>                    
+                <tr style={{background:'linear-gradient(to right,#a6bace 0%,#0588d8 100%)'}}>                    
                 <td>
                     <input type="text" id="title" value={this.props.shift.title} onChange={this.handleChange}/><br/>
-                    <input className='textbox' cols="40" rows="5" id="description" value={this.props.shift.description} onChange={this.handleChange}/>
+                    <input className='textbox' cols="40" rows="5" id="description" placeholder="Enter shift description" value={this.props.shift.description} onChange={this.handleChange}/>
                 </td>
                 <td>
                     <input type="text" id="location" value={this.props.shift.location} onChange={this.handleChange}/><br/>
                 </td>
                 <td>
+                <label>
                 <DatePicker
                     selected={d}
                     onChange={this.handleChangeDate} //only when value has changed
                     showTimeSelect showTimeInput
-                />                    
+                />    
+                </label>                
                 </td>
                 </tr>
                 <tr style={{marginTop:'50px'}}>
-                <Button variant="success" onClick={() => {this.doUpdate()}}>Done</Button>
+                <Button variant="success" style={{ backgroundColor: "#21ba45",borderColor: "#21ba45"}} onClick={() => {this.doUpdate()}}>Done</Button>
                 </tr>
                 </>
             )            
@@ -136,11 +139,11 @@ export class ShiftRow extends React.Component {
                     {this.props.shift.location}
                 </td>
                 <td>
-                    {this.props.shift.start}
+                    { this.props.shift.start && (moment(this.props.shift.start).format("MMMM Do YYYY, h:mm:ss a"))}{" "}
                 </td>
-                <td>
-                    <Button variant="outline-success" onClick={() => {this.doEdit()}}>Edit</Button>
-                    <Button variant="outline-danger" onClick={() => {this.doDelete()}}>Delete</Button>
+                <td style={{whiteSpace:"nowrap", paddingLeft: "0px"}}>
+                    <Button id="editButton" variant="outline-success" onClick={() => {this.doEdit()}}>Edit</Button>
+                    <Button id="deleteButton" variant="outline-danger" onClick={() => {this.doDelete()}}>Delete</Button>
                 </td>
                 </tr>
             )        
@@ -175,10 +178,10 @@ export default class ShiftList extends React.Component {
         const shifts = this.props.shifts
         return (
             <form onSubmit={this.handleSubmit}>
-            <Table striped hover className="shiftTable">
+            <Table striped responsive hover className="shiftTable">
                 <thead>
                 <tr>
-                    <th>What</th>
+                    <th>Shift Name</th>
                     <th>Where</th>
                     <th>When</th>
                 </tr>
@@ -193,7 +196,7 @@ export default class ShiftList extends React.Component {
             }
             </tbody>
             </Table>
-            <Button onClick={() => this.doAdd()} variant="outline-success">Add Shift</Button>
+            <Button onClick={() => this.doAdd()} style={{color: "#fff",backgroundColor: "#21ba45",borderColor:"#21ba45",marginTop: "10px"}}>Add Shift</Button>
             </form>
         )
     }    
